@@ -4,10 +4,10 @@ import { profile } from "@/lib/content";
 
 export function ContactCta() {
   return (
-    <section id="contact" className="scroll-mt-16">
-      <div className="panel p-5 sm:p-7">
-        <p className="spec">04 — Contact</p>
-        <h2 className="mt-1 text-2xl font-medium tracking-tight sm:text-3xl">
+    <section id="contact" className="scroll-mt-20">
+      <div className="panel p-6 sm:p-8">
+        <p className="label">Contact</p>
+        <h2 className="mt-1 text-2xl font-semibold tracking-tight sm:text-3xl">
           Hire the person who already shipped to users
         </h2>
         <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground">
@@ -15,7 +15,7 @@ export function ContactCta() {
           friction. If you need a junior who has already designed interfaces
           and kept mods alive through game patches, write.
         </p>
-        <div className="mt-5 flex flex-wrap gap-2">
+        <div className="mt-6 flex flex-wrap gap-2">
           <Button
             nativeButton={false}
             render={<a href={`mailto:${profile.email}`} />}

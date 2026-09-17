@@ -9,23 +9,23 @@ const nav = [
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-background/85 backdrop-blur-md">
-      <div className="mx-auto flex h-12 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
+    <header className="sticky top-0 z-40 border-b border-border/80 bg-background/70 backdrop-blur-xl">
+      <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
         <a
           href="#top"
-          className="flex items-baseline gap-2 font-medium tracking-tight"
+          className="flex items-baseline gap-2 font-semibold tracking-tight"
         >
           <span>{profile.name}</span>
-          <span className="spec hidden sm:inline">
+          <span className="hidden text-sm font-normal text-muted-foreground sm:inline">
             {profile.aliases.join(" / ")}
           </span>
         </a>
-        <nav aria-label="Primary" className="flex items-center gap-1">
+        <nav aria-label="Primary" className="flex items-center gap-0.5">
           {nav.map((item) => (
             <a
               key={item.href}
               href={item.href}
-              className="rounded-md px-2.5 py-1 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:bg-muted focus-visible:text-foreground"
+              className="rounded-full px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:bg-muted focus-visible:text-foreground"
             >
               {item.label}
             </a>

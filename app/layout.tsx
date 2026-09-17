@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
-const title = `${profile.name} — Junior software engineer`;
+const title = `${profile.name}, junior software engineer`;
 const description =
   "Stabroek, Belgium. Available immediately for junior software / fullstack / Java / .NET / React. C# automation, shipped game UIs, desktop tooling.";
 

@@ -18,10 +18,10 @@ export default function Home() {
       <SiteHeader />
       <main
         id="top"
-        className="mx-auto grid max-w-6xl gap-8 px-4 py-6 sm:px-6 lg:grid-cols-[minmax(280px,340px)_minmax(0,1fr)] lg:items-start lg:gap-8 lg:py-8"
+        className="mx-auto grid max-w-6xl gap-10 px-4 py-8 sm:px-6 lg:grid-cols-[minmax(260px,300px)_minmax(0,1fr)] lg:items-start lg:gap-12 lg:py-12"
       >
         <IdentityRail />
-        <div className="flex min-w-0 flex-col gap-14 pb-8">
+        <div className="flex min-w-0 flex-col gap-16 pb-10">
           <FeaturedWork />
           <StackGrid />
           <Timeline />

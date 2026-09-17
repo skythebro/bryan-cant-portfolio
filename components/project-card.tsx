@@ -6,6 +6,13 @@ import type { Project } from "@/lib/content";
 import { Badge } from "@/components/ui/badge";
 import { ProjectShots } from "@/components/project-shots";
 
+function kickerChips(kicker: string) {
+  return kicker
+    .split("·")
+    .map((part) => part.trim())
+    .filter(Boolean);
+}
+
 export function ProjectCard({
   project,
   index,
@@ -13,6 +20,8 @@ export function ProjectCard({
   project: Project;
   index: number;
 }) {
+  const chips = kickerChips(project.kicker);
+
   return (
     <motion.article
       layout
@@ -24,56 +33,64 @@ export function ProjectCard({
         delay: index * 0.03,
         ease: [0.22, 1, 0.36, 1],
       }}
-      className={`panel flex h-full flex-col p-4 transition-colors hover:border-primary/35 hover:bg-card ${
-        project.featured ? "md:p-5" : ""
+      className={`panel flex h-full min-w-0 flex-col overflow-hidden p-5 ${
+        project.featured ? "sm:p-6" : ""
       }`}
     >
-      <div className="flex items-start justify-between gap-3">
-        <p className="spec">{project.kicker}</p>
-        <div className="flex flex-wrap justify-end gap-1.5">
+      <header className="flex min-w-0 items-start justify-between gap-3">
+        <h3
+          className={`min-w-0 flex-1 text-pretty font-semibold tracking-tight ${
+            project.featured ? "text-2xl" : "text-lg"
+          }`}
+        >
+          {project.title}
+        </h3>
+        <div className="flex shrink-0 flex-wrap justify-end gap-1.5">
           {project.badge ? (
             <Badge
               variant="outline"
-              className="rounded-sm border-primary/35 font-mono uppercase text-primary"
+              className="rounded-full border-primary/30 bg-primary/10 text-primary"
             >
               {project.badge}
             </Badge>
           ) : null}
           {project.status === "wip" ? (
-            <Badge variant="outline" className="rounded-sm font-mono uppercase">
+            <Badge variant="outline" className="rounded-full">
               WIP
             </Badge>
           ) : null}
         </div>
-      </div>
-      <h3 className="mt-2 text-lg font-medium tracking-tight">
-        {project.title}
-      </h3>
-      <div
-        className={
-          project.featured && project.highlights?.length
-            ? "mt-2 grid flex-1 gap-4 md:grid-cols-2 md:items-start"
-            : "flex-1"
-        }
-      >
-        <p className="mt-2 text-sm leading-relaxed text-muted-foreground md:mt-0">
-          {project.summary}
-        </p>
-        {project.highlights && project.highlights.length > 0 ? (
-          <ul className="space-y-1.5 border-l border-primary/25 pl-3">
-            {project.highlights.map((item) => (
-              <li
-                key={item}
-                className="text-sm leading-relaxed text-foreground/85"
-              >
-                {item}
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <div className="flex-1" />
-        )}
-      </div>
+      </header>
+
+      {chips.length > 0 ? (
+        <ul
+          className="mt-3 flex min-w-0 flex-wrap gap-1.5"
+          aria-label="Project details"
+        >
+          {chips.map((chip) => (
+            <li key={chip} className="chip">
+              {chip}
+            </li>
+          ))}
+        </ul>
+      ) : null}
+
+      <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+        {project.summary}
+      </p>
+
+      {project.highlights && project.highlights.length > 0 ? (
+        <ul className="mt-3 space-y-1.5">
+          {project.highlights.map((item) => (
+            <li
+              key={item}
+              className="relative pl-3.5 text-sm leading-relaxed text-foreground/88 before:absolute before:left-0 before:top-[0.55em] before:size-1.5 before:rounded-full before:bg-primary/80"
+            >
+              {item}
+            </li>
+          ))}
+        </ul>
+      ) : null}
 
       {project.shots && project.shots.length > 0 ? (
         <ProjectShots
@@ -88,12 +105,12 @@ export function ProjectCard({
           {project.metrics.map((metric) => (
             <li
               key={`${metric.value}-${metric.label}`}
-              className="border border-primary/25 bg-accent px-2 py-1"
+              className="rounded-full border border-primary/20 bg-primary/10 px-2.5 py-1"
             >
-              <span className="font-mono text-sm text-primary">
+              <span className="text-sm font-semibold text-primary">
                 {metric.value}
               </span>
-              <span className="ml-1.5 font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
+              <span className="ml-1.5 text-xs text-muted-foreground">
                 {metric.label}
               </span>
             </li>
@@ -103,18 +120,14 @@ export function ProjectCard({
 
       <ul className="mt-4 flex flex-wrap gap-1.5">
         {project.tags.map((tag) => (
-          <li
-            key={tag}
-            className="font-mono text-[11px] text-muted-foreground"
-          >
+          <li key={tag} className="chip">
             {tag}
-            <span className="text-border"> ·</span>
           </li>
         ))}
       </ul>
 
       {project.links.length > 0 ? (
-        <div className="mt-4 flex flex-wrap gap-3 border-t border-border pt-3">
+        <div className="mt-4 flex flex-wrap gap-3 border-t border-border pt-4">
           {project.links.map((link) => (
             <a
               key={link.href}
@@ -129,8 +142,8 @@ export function ProjectCard({
           ))}
         </div>
       ) : (
-        <p className="mt-4 border-t border-border pt-3 font-mono text-[11px] text-muted-foreground/70">
-          No public repo verified — link omitted.
+        <p className="mt-4 border-t border-border pt-4 text-xs text-muted-foreground/80">
+          No public repo verified. Link omitted.
         </p>
       )}
     </motion.article>

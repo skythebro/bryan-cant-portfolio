@@ -1,33 +1,28 @@
+import { SectionHeading } from "@/components/section-heading";
 import { timeline } from "@/lib/content";
 
 const kindLabel = {
-  edu: "Edu",
+  edu: "Education",
   job: "Job",
-  release: "Ship",
+  release: "Release",
 } as const;
 
 export function Timeline() {
   return (
-    <section id="timeline" className="scroll-mt-16">
-      <p className="spec">03 — Timeline</p>
-      <h2 className="mt-1 text-2xl font-medium tracking-tight">
-        Education, jobs, releases
-      </h2>
-      <ol className="mt-4 divide-y divide-border border border-border">
+    <section id="timeline" className="scroll-mt-20">
+      <SectionHeading eyebrow="Timeline" title="Education, jobs, releases" />
+      <ol className="space-y-3">
         {timeline.map((item) => (
-          <li
-            key={item.id}
-            className="grid gap-2 px-4 py-3 sm:grid-cols-[7.5rem_3.25rem_1fr] sm:items-baseline"
-          >
-            <time className="font-mono text-[11px] text-muted-foreground">
-              {item.when}
-            </time>
-            <span className="spec w-fit border border-border px-1.5 py-0.5 text-primary">
-              {kindLabel[item.kind]}
-            </span>
-            <div>
-              <h3 className="text-sm font-medium">{item.title}</h3>
-              <p className="mt-1 text-sm text-muted-foreground">{item.detail}</p>
+          <li key={item.id} className="panel px-4 py-4 sm:px-5">
+            <div className="grid gap-2 sm:grid-cols-[7.5rem_7rem_1fr] sm:items-baseline">
+              <time className="text-sm text-muted-foreground">{item.when}</time>
+              <span className="chip w-fit text-primary">{kindLabel[item.kind]}</span>
+              <div className="min-w-0">
+                <h3 className="text-sm font-semibold">{item.title}</h3>
+                <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+                  {item.detail}
+                </p>
+              </div>
             </div>
           </li>
         ))}

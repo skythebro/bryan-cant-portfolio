@@ -8,37 +8,41 @@ export function Portrait() {
   const [failed, setFailed] = useState(false);
 
   return (
-    <figure className="relative">
-      <div className="relative overflow-hidden border border-border bg-muted">
-        {failed ? (
-          <div
-            className="flex aspect-4/5 w-full flex-col items-center justify-center gap-2 bg-[oklch(0.16_0.01_264)]"
-            role="img"
-            aria-label={profile.photo.alt}
-          >
-            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-primary">
-              ID
-            </span>
-            <span className="text-5xl font-medium tracking-tight">BC</span>
-            <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">
-              {profile.aliases[0]}
-            </span>
-          </div>
-        ) : (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={assetPath(profile.photo.src)}
-            alt={profile.photo.alt}
-            width={640}
-            height={800}
-            className="aspect-4/5 w-full object-cover object-[center_18%] grayscale-[12%]"
-            onError={() => setFailed(true)}
-          />
-        )}
+    <figure className="flex flex-col items-center">
+      <div className="relative">
+        <div
+          className="absolute inset-[-10px] rounded-full bg-primary/20 blur-2xl"
+          aria-hidden
+        />
+        <div className="relative flex size-40 items-center justify-center overflow-hidden rounded-full bg-[#f4efe6] p-3 ring-2 ring-primary/45 sm:size-44">
+          {failed ? (
+            <div
+              className="flex h-full w-full flex-col items-center justify-center gap-1 text-primary-foreground"
+              role="img"
+              aria-label={profile.photo.alt}
+            >
+              <span className="text-4xl font-semibold tracking-tight text-[#3a2e22]">
+                S
+              </span>
+              <span className="text-xs text-[#3a2e22]/70">
+                {profile.aliases[0]}
+              </span>
+            </div>
+          ) : (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={assetPath(profile.photo.src)}
+              alt={profile.photo.alt}
+              width={460}
+              height={460}
+              className="h-full w-full object-contain"
+              onError={() => setFailed(true)}
+            />
+          )}
+        </div>
       </div>
-      <figcaption className="mt-2 flex justify-between font-mono text-[10px] uppercase tracking-[0.12em] text-muted-foreground">
-        <span>CV / hero</span>
-        <span>Stabroek · BE</span>
+      <figcaption className="mt-3 text-center text-sm text-muted-foreground">
+        {profile.aliases[0]} · {profile.location}
       </figcaption>
     </figure>
   );

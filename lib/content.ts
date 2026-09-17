@@ -5,7 +5,7 @@ export const profile = {
   region: "Antwerp area",
   role: "Junior software engineer",
   headline:
-    "I automate logistics data in C# and ship product UIs that people actually click — in-game, on the desktop, and on the web.",
+    "I automate logistics data in C# and ship product UIs that people actually click. In-game, on the desktop, and on the web.",
   status: "Available immediately",
   seeking:
     "Junior software / fullstack / Java / .NET / React. Hybrid OK.",
@@ -15,8 +15,8 @@ export const profile = {
     { code: "FR", label: "French", level: "Average" },
   ],
   photo: {
-    src: "/bryan.jpg",
-    alt: "Portrait of Bryan Cant, junior software engineer based in Stabroek, Belgium.",
+    src: "/skythebro.png",
+    alt: "Skythebro avatar for Bryan Cant. A chibi character used as Sky's public identity.",
   },
   email: "bryancant@live.be",
   phone: "+32 479 22 92 09",
@@ -617,6 +617,6 @@ export const personas: {
   {
     id: "ui",
     label: "UI & Product Design",
-    hint: "Better UI, AMM, Atlas — with shots",
+    hint: "Better UI, AMM, Atlas. With shots",
   },
 ];

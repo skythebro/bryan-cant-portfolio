@@ -1,30 +1,30 @@
 # Design tokens
 
-Workbench aesthetic: Linear-style docs, not a SaaS landing page. Dark only. One accent.
+Personal studio, not a terminal or Linear workbench. Dark and warm. One honey accent.
 
 ## Color
 
 | Token | Value | Use |
 | --- | --- | --- |
-| `--background` | `oklch(0.145 0.008 264)` | Page |
-| `--card` | `oklch(0.175 0.009 264)` | Panels |
-| `--foreground` | `oklch(0.935 0.006 264)` | Body |
-| `--muted-foreground` | `oklch(0.68 0.018 264)` | Secondary copy |
-| `--border` | `oklch(0.92 0.01 264 / 10%)` | Hairlines |
-| `--primary` / `--steel` | `oklch(0.78 0.042 248)` | Accent: links, metrics, live badge |
-| `--primary-foreground` | `oklch(0.16 0.012 264)` | Text on accent |
-| `--radius` | `0.375rem` | Tight, technical |
+| `--background` | `oklch(0.2 0.018 55)` | Page |
+| `--card` | `oklch(0.255 0.02 52)` | Panels |
+| `--foreground` | `oklch(0.96 0.014 80)` | Body |
+| `--muted-foreground` | `oklch(0.76 0.03 65)` | Secondary copy |
+| `--border` | `oklch(0.9 0.03 70 / 14%)` | Soft edges |
+| `--primary` | `oklch(0.82 0.11 72)` | Accent: links, metrics, live badge |
+| `--primary-foreground` | `oklch(0.24 0.03 55)` | Text on accent |
+| `--radius` | `1rem` | Rounded cards and chips |
 
-No second accent. No gradient text.
+Page wash is two warm radial glows. No blueprint grid.
 
 ## Type
 
 | Role | Family | Notes |
 | --- | --- | --- |
-| UI / headings | Outfit (geometric sans) | `--font-outfit` |
-| Specs, tags, metrics, dates | Geist Mono | Uppercase tracking on `.spec` |
+| UI / headings | Outfit | `--font-outfit` |
+| Rare code-ish leftovers | Geist Mono | Avoid uppercase tracking banners |
 
-Body ~15px. Dense, not airy.
+Body ~15px. Give cards air. Section labels are sentence case (`.label`), not `01 FEATURED ENGINEERING`.
 
 ## Motion
 
@@ -32,9 +32,11 @@ Framer Motion on the identity rail and project cards. 220–350ms, `[0.22, 1, 0.
 
 ## Layout
 
-Sticky command bar. Identity rail (photo + spec sheet) sticky on large screens. Main column is the workbench: persona tabs, stack grid, compact timeline, contact.
+Soft sticky header. Identity rail (circular skythebro avatar + bio) sticky on large screens. Main column is featured work, stack, timeline, contact.
 
-Featured UI cards show a dense 2-up Nexus gallery (`public/foa/`). Click opens a lightbox (Esc / arrows). Non-featured shot cards use a single thumb or a 2-up pair.
+Featured UI cards show a Nexus gallery (`public/foa/`). Click opens a lightbox (Esc / arrows). Captions sit under the shot so they never cover a heading.
+
+Project titles are the card heading. Kickers become wrapping chips. No watermark text behind or across titles.
 
 ## Icons
 
