@@ -52,19 +52,15 @@ export function IdentityRail() {
         </div>
       </div>
 
-      <p className="mt-3 text-sm leading-relaxed text-foreground/90">
-        {profile.headline}
-      </p>
       <p className="mt-2 flex items-center gap-1.5 text-sm text-muted-foreground">
         <MapPin className="size-3.5 shrink-0" aria-hidden />
         {profile.location}
       </p>
-      <p className="mt-1 text-sm text-foreground/85">{profile.seeking}</p>
 
-      <dl className="mt-3 space-y-2">
-        <div className="rounded-xl border border-primary/20 bg-primary/10 px-3 py-2.5">
+      <dl className="mt-2.5 space-y-1.5">
+        <div className="rounded-xl border border-primary/20 bg-primary/10 px-3 py-2">
           <dt className="text-xs text-muted-foreground">{downloads.label}</dt>
-          <dd className="text-xl font-semibold text-primary">
+          <dd className="text-xl font-semibold leading-tight text-primary">
             {downloads.value}
           </dd>
         </div>
@@ -72,18 +68,23 @@ export function IdentityRail() {
           {otherProof.map((item) => (
             <div
               key={item.label}
-              className="rounded-xl border border-border bg-background/40 px-2 py-2"
+              className="rounded-xl border border-border bg-background/40 px-2 py-1.5"
             >
               <dt className="text-[10px] leading-3 text-muted-foreground">
                 {item.label}
               </dt>
-              <dd className="mt-1 text-sm font-semibold text-primary">
+              <dd className="mt-0.5 text-sm font-semibold text-primary">
                 {item.value}
               </dd>
             </div>
           ))}
         </div>
       </dl>
+
+      <p className="mt-2.5 text-sm leading-relaxed text-foreground/90">
+        {profile.headline}
+      </p>
+      <p className="mt-1 text-sm text-foreground/85">{profile.seeking}</p>
 
       <ul className="mt-3 flex flex-wrap gap-1.5" aria-label="Stack">
         {heroTags.map((tag) => (
