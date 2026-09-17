@@ -1,6 +1,6 @@
 # Bryan Cant, portfolio
 
-Static personal site for **Bryan Cant** (Sky / SkyBreeze), junior software engineer in Stabroek, Belgium. Next.js App Router, TypeScript, Tailwind CSS, `output: 'export'`. No backend, no paid services.
+Static personal site for **Bryan Cant** (Sky / SkyBreeze), junior software engineer in Belgium · Antwerp. Next.js App Router, TypeScript, Tailwind CSS, `output: 'export'`. No backend, no paid services.
 
 ## Run locally
 

@@ -6,11 +6,12 @@ import type { Project } from "@/lib/content";
 import { Badge } from "@/components/ui/badge";
 import { ProjectShots } from "@/components/project-shots";
 
-function kickerChips(kicker: string) {
+function kickerLine(kicker: string) {
   return kicker
     .split("·")
     .map((part) => part.trim())
-    .filter(Boolean);
+    .filter(Boolean)
+    .join(" · ");
 }
 
 export function ProjectCard({
@@ -20,7 +21,7 @@ export function ProjectCard({
   project: Project;
   index: number;
 }) {
-  const chips = kickerChips(project.kicker);
+  const meta = kickerLine(project.kicker);
 
   return (
     <motion.article
@@ -33,19 +34,19 @@ export function ProjectCard({
         delay: index * 0.03,
         ease: [0.22, 1, 0.36, 1],
       }}
-      className={`panel flex h-full min-w-0 flex-col p-5 ${
-        project.featured ? "sm:p-6" : ""
+      className={`panel flex min-w-0 flex-col ${
+        project.featured ? "p-6 sm:p-8" : "p-5"
       }`}
     >
       <header className="flex min-w-0 items-start justify-between gap-3">
         <h3
-          className={`min-w-0 flex-1 text-pretty font-semibold tracking-tight ${
-            project.featured ? "text-2xl" : "text-lg"
+          className={`relative z-10 min-w-0 flex-1 text-pretty font-semibold tracking-tight ${
+            project.featured ? "text-2xl sm:text-3xl" : "text-lg"
           }`}
         >
           {project.title}
         </h3>
-        <div className="flex shrink-0 flex-wrap justify-end gap-1.5">
+        <div className="relative z-10 flex shrink-0 flex-wrap justify-end gap-1.5">
           {project.badge ? (
             <Badge
               variant="outline"
@@ -62,25 +63,22 @@ export function ProjectCard({
         </div>
       </header>
 
-      {chips.length > 0 ? (
-        <ul
-          className="mt-3 flex min-w-0 flex-wrap gap-1.5"
-          aria-label="Project details"
-        >
-          {chips.map((chip) => (
-            <li key={chip} className="chip">
-              {chip}
-            </li>
-          ))}
-        </ul>
+      {meta ? (
+        <p className="relative z-10 mt-2 text-sm text-muted-foreground">
+          {meta}
+        </p>
       ) : null}
 
-      <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+      <p
+        className={`relative z-10 max-w-3xl text-[15px] leading-relaxed text-muted-foreground ${
+          project.featured ? "mt-4" : "mt-3"
+        }`}
+      >
         {project.summary}
       </p>
 
       {project.highlights && project.highlights.length > 0 ? (
-        <ul className="mt-3 space-y-1.5">
+        <ul className={`space-y-2 ${project.featured ? "mt-5" : "mt-3"}`}>
           {project.highlights.map((item) => (
             <li
               key={item}
@@ -142,7 +140,7 @@ export function ProjectCard({
           ))}
         </div>
       ) : (
-        <p className="mt-4 border-t border-border pt-4 text-xs text-muted-foreground/80">
+        <p className="mt-4 border-t border-border pt-4 text-sm text-muted-foreground">
           No public repo verified. Link omitted.
         </p>
       )}

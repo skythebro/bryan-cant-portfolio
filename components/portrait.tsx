@@ -4,29 +4,31 @@ import { useState } from "react";
 import { profile } from "@/lib/content";
 import { assetPath } from "@/lib/paths";
 
-export function Portrait() {
+export function Portrait({
+  size = "sm",
+}: {
+  size?: "sm" | "md";
+}) {
   const [failed, setFailed] = useState(false);
+  const frame = size === "md" ? "size-24 sm:size-28" : "size-20";
 
   return (
-    <figure className="flex flex-col items-center">
+    <figure className="shrink-0">
       <div className="relative">
         <div
-          className="absolute inset-[-10px] rounded-full bg-primary/20 blur-2xl"
+          className="absolute inset-[-6px] rounded-full bg-primary/20 blur-xl"
           aria-hidden
         />
-        <div className="relative flex size-40 items-center justify-center overflow-hidden rounded-full bg-[#f4efe6] p-3 ring-2 ring-primary/45 sm:size-44">
+        <div
+          className={`relative flex items-center justify-center overflow-hidden rounded-full bg-[#f4efe6] p-1.5 ring-2 ring-primary/45 ${frame}`}
+        >
           {failed ? (
             <div
-              className="flex h-full w-full flex-col items-center justify-center gap-1 text-primary-foreground"
+              className="flex h-full w-full items-center justify-center text-xl font-semibold text-[#3a2e22]"
               role="img"
               aria-label={profile.photo.alt}
             >
-              <span className="text-4xl font-semibold tracking-tight text-[#3a2e22]">
-                S
-              </span>
-              <span className="text-xs text-[#3a2e22]/70">
-                {profile.aliases[0]}
-              </span>
+              S
             </div>
           ) : (
             // eslint-disable-next-line @next/next/no-img-element
@@ -41,9 +43,6 @@ export function Portrait() {
           )}
         </div>
       </div>
-      <figcaption className="mt-3 text-center text-sm text-muted-foreground">
-        {profile.aliases[0]} · {profile.location}
-      </figcaption>
     </figure>
   );
 }

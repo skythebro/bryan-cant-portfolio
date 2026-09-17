@@ -2,10 +2,18 @@
 
 import { AnimatePresence } from "framer-motion";
 import { useMemo, useState } from "react";
-import { personas, projects, type Persona } from "@/lib/content";
+import { personas, projects, type Persona, type Project } from "@/lib/content";
 import { ProjectCard } from "@/components/project-card";
 import { SectionHeading } from "@/components/section-heading";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
+function arrangeCards(items: Project[]) {
+  const lead = items.filter((project) => project.featured);
+  const rest = items.filter((project) => !project.featured);
+  const withShots = rest.filter((project) => (project.shots?.length ?? 0) > 0);
+  const compact = rest.filter((project) => (project.shots?.length ?? 0) === 0);
+  return { lead, rest: [...withShots, ...compact] };
+}
 
 export function FeaturedWork() {
   const [persona, setPersona] = useState<Persona>("ui");
@@ -18,8 +26,11 @@ export function FeaturedWork() {
     [persona],
   );
 
+  const { lead, rest } = arrangeCards(visible);
+  const lastRestSpans = rest.length % 2 === 1;
+
   return (
-    <section id="work" className="scroll-mt-20">
+    <section id="work" className="relative z-0 scroll-mt-20">
       <SectionHeading eyebrow="Featured work" title="Three desks, one person">
         Enterprise integrations, shipped mods with users, and product UI.
         Better UI, Avalon Mod Manager, and Avalon Atlas carry Nexus gallery
@@ -29,17 +40,17 @@ export function FeaturedWork() {
       <Tabs
         value={persona}
         onValueChange={(value) => setPersona(value as Persona)}
-        className="gap-5"
+        className="gap-6"
       >
         <TabsList
           variant="default"
-          className="h-auto w-full flex-wrap justify-start gap-1.5 rounded-2xl bg-card/80 p-1.5"
+          className="relative z-10 h-auto w-full flex-wrap justify-start gap-1.5 rounded-2xl bg-card/80 p-1.5"
         >
           {personas.map((item) => (
             <TabsTrigger
               key={item.id}
               value={item.id}
-              className="h-auto flex-none flex-col items-start rounded-xl px-3.5 py-2 text-left data-active:bg-background data-active:text-foreground"
+              className="h-auto flex-none flex-col items-start whitespace-normal rounded-xl px-3.5 py-2 text-left after:hidden data-active:bg-background data-active:text-foreground"
             >
               <span className="text-sm font-medium">{item.label}</span>
               <span className="hidden text-[11px] font-normal text-muted-foreground sm:block">
@@ -50,18 +61,33 @@ export function FeaturedWork() {
         </TabsList>
 
         {personas.map((item) => (
-          <TabsContent key={item.id} value={item.id}>
+          <TabsContent key={item.id} value={item.id} className="relative z-0">
             <AnimatePresence mode="wait">
               {persona === item.id ? (
-                <div className="grid gap-4 md:grid-cols-2">
-                  {visible.map((project, index) => (
-                    <div
+                <div className="flex flex-col gap-5">
+                  {lead.map((project, index) => (
+                    <ProjectCard
                       key={project.id}
-                      className={project.featured ? "md:col-span-2" : undefined}
-                    >
-                      <ProjectCard project={project} index={index} />
-                    </div>
+                      project={project}
+                      index={index}
+                    />
                   ))}
+                  {rest.length > 0 ? (
+                    <div className="grid items-start gap-4 md:grid-cols-2">
+                      {rest.map((project, index) => (
+                        <div
+                          key={project.id}
+                          className={
+                            lastRestSpans && index === rest.length - 1
+                              ? "md:col-span-2"
+                              : undefined
+                          }
+                        >
+                          <ProjectCard project={project} index={lead.length + index} />
+                        </div>
+                      ))}
+                    </div>
+                  ) : null}
                 </div>
               ) : null}
             </AnimatePresence>

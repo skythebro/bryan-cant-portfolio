@@ -58,13 +58,13 @@ export function ProjectShots({
 
   return (
     <>
-      <ul className={`mt-4 grid gap-3 ${grid}`}>
+      <ul className={`mt-5 grid gap-4 ${grid}`}>
         {visible.map((shot, index) => (
           <li key={shot.src} className="min-w-0">
             <button
               type="button"
               onClick={() => setOpen(index)}
-              className="group block w-full overflow-hidden rounded-xl border border-border bg-muted text-left outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-ring/50"
+              className="group block w-full overflow-hidden rounded-2xl border border-border bg-muted text-left outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-ring/50"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
@@ -72,7 +72,9 @@ export function ProjectShots({
                 alt={shot.alt}
                 width={1600}
                 height={900}
-                className="aspect-video w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.02]"
+                className={`w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.02] ${
+                  featured ? "aspect-[16/10]" : "aspect-video"
+                }`}
                 onError={() =>
                   setFailed((currentFailed) => ({
                     ...currentFailed,
@@ -80,7 +82,11 @@ export function ProjectShots({
                   }))
                 }
               />
-              <span className="block px-2.5 py-2 text-xs text-muted-foreground">
+              <span
+                className={`block px-3 py-2.5 text-muted-foreground ${
+                  featured ? "text-sm" : "text-[13px]"
+                }`}
+              >
                 {shot.caption}
               </span>
             </button>

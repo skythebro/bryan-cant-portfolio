@@ -32,11 +32,11 @@ Framer Motion on the identity rail and project cards. 220–350ms, `[0.22, 1, 0.
 
 ## Layout
 
-Soft sticky header. Identity rail (circular skythebro avatar + bio) sticky on large screens. Main column is featured work, stack, timeline, contact.
+Soft sticky header. Compact identity rail (small circular skythebro avatar, bio, unique downloads) sits below the header. Main column is featured work, stack, timeline, then contact with the footer attached.
 
 Featured UI cards show a Nexus gallery (`public/foa/`). Click opens a lightbox (Esc / arrows). Captions sit under the shot so they never cover a heading.
 
-Project titles are the card heading. Kickers become wrapping chips. No watermark text behind or across titles.
+Project titles are the card heading. Meta stays a quiet line under the title. No watermark text behind or across titles. Non-featured cards pack by media first and do not stretch to match a taller neighbor.
 
 ## Icons
 
