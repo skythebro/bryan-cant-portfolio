@@ -1,8 +1,8 @@
 name: Deploy GitHub Pages
 
 on:
-  push:
-    branches: [main]
+  # Auto-deploy off while repo is private (GitHub Pages needs public or a paid plan).
+  # Re-enable push trigger after: Settings → Pages → Source: GitHub Actions, and/or make public.
   workflow_dispatch:
 
 permissions:
