@@ -33,7 +33,7 @@ export function ProjectCard({
         delay: index * 0.03,
         ease: [0.22, 1, 0.36, 1],
       }}
-      className={`panel flex h-full min-w-0 flex-col overflow-hidden p-5 ${
+      className={`panel flex h-full min-w-0 flex-col p-5 ${
         project.featured ? "sm:p-6" : ""
       }`}
     >
