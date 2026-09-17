@@ -12,7 +12,31 @@ function arrangeCards(items: Project[]) {
   const rest = items.filter((project) => !project.featured);
   const withShots = rest.filter((project) => (project.shots?.length ?? 0) > 0);
   const compact = rest.filter((project) => (project.shots?.length ?? 0) === 0);
-  return { lead, rest: [...withShots, ...compact] };
+  return { lead, withShots, compact };
+}
+
+function CardGrid({
+  items,
+  indexOffset,
+}: {
+  items: Project[];
+  indexOffset: number;
+}) {
+  if (items.length === 0) return null;
+  const lastSpans = items.length % 2 === 1;
+
+  return (
+    <div className="grid items-start gap-4 md:grid-cols-2">
+      {items.map((project, index) => (
+        <div
+          key={project.id}
+          className={lastSpans && index === items.length - 1 ? "md:col-span-2" : undefined}
+        >
+          <ProjectCard project={project} index={indexOffset + index} />
+        </div>
+      ))}
+    </div>
+  );
 }
 
 export function FeaturedWork() {
@@ -26,8 +50,7 @@ export function FeaturedWork() {
     [persona],
   );
 
-  const { lead, rest } = arrangeCards(visible);
-  const lastRestSpans = rest.length % 2 === 1;
+  const { lead, withShots, compact } = arrangeCards(visible);
 
   return (
     <section id="work" className="relative z-0 scroll-mt-20">
@@ -72,22 +95,11 @@ export function FeaturedWork() {
                       index={index}
                     />
                   ))}
-                  {rest.length > 0 ? (
-                    <div className="grid items-start gap-4 md:grid-cols-2">
-                      {rest.map((project, index) => (
-                        <div
-                          key={project.id}
-                          className={
-                            lastRestSpans && index === rest.length - 1
-                              ? "md:col-span-2"
-                              : undefined
-                          }
-                        >
-                          <ProjectCard project={project} index={lead.length + index} />
-                        </div>
-                      ))}
-                    </div>
-                  ) : null}
+                  <CardGrid items={withShots} indexOffset={lead.length} />
+                  <CardGrid
+                    items={compact}
+                    indexOffset={lead.length + withShots.length}
+                  />
                 </div>
               ) : null}
             </AnimatePresence>

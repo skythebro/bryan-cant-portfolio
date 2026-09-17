@@ -61,14 +61,6 @@ export function IdentityRail() {
       </p>
       <p className="mt-1 text-sm text-foreground/85">{profile.seeking}</p>
 
-      <ul className="mt-3 flex flex-wrap gap-1.5" aria-label="Stack">
-        {heroTags.map((tag) => (
-          <li key={tag} className="chip">
-            {tag}
-          </li>
-        ))}
-      </ul>
-
       <dl className="mt-3 space-y-2">
         <div className="rounded-xl border border-primary/20 bg-primary/10 px-3 py-2.5">
           <dt className="text-xs text-muted-foreground">{downloads.label}</dt>
@@ -92,6 +84,14 @@ export function IdentityRail() {
           ))}
         </div>
       </dl>
+
+      <ul className="mt-3 flex flex-wrap gap-1.5" aria-label="Stack">
+        {heroTags.map((tag) => (
+          <li key={tag} className="chip">
+            {tag}
+          </li>
+        ))}
+      </ul>
 
       <div className="mt-3 flex flex-wrap gap-1.5">
         {social.map(({ href, label, icon: Icon }) => (
