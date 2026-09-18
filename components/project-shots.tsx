@@ -1,6 +1,13 @@
 "use client";
 
-import { useCallback, useEffect, useId, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useId,
+  useRef,
+  useState,
+  type PointerEvent,
+} from "react";
 import { createPortal } from "react-dom";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import type { ProjectShot } from "@/lib/content";
@@ -21,6 +28,7 @@ export function ProjectShots({
   const labelId = useId();
   const dialogRef = useRef<HTMLDivElement>(null);
   const lastTrigger = useRef<HTMLButtonElement | null>(null);
+  const swipeX = useRef<number | null>(null);
   const [open, setOpen] = useState<number | null>(null);
   const [failed, setFailed] = useState<Record<string, boolean>>({});
   const visible = shots.filter((shot) => !failed[shot.src]);
@@ -40,6 +48,19 @@ export function ProjectShots({
       return (index + delta + count) % count;
     });
   }, [failed, shots]);
+
+  const onSwipeStart = (event: PointerEvent<HTMLDivElement>) => {
+    if (event.pointerType === "mouse") return;
+    swipeX.current = event.clientX;
+  };
+
+  const onSwipeEnd = (event: PointerEvent<HTMLDivElement>) => {
+    if (swipeX.current === null) return;
+    const delta = event.clientX - swipeX.current;
+    swipeX.current = null;
+    if (Math.abs(delta) < 48) return;
+    step(delta < 0 ? 1 : -1);
+  };
 
   useEffect(() => {
     if (open === null) return;
@@ -87,6 +108,11 @@ export function ProjectShots({
             tabIndex={-1}
             className="fixed inset-0 z-[100] flex items-center justify-center bg-[oklch(0.1_0.02_55/0.94)] p-4 sm:p-8"
             onClick={close}
+            onPointerDown={onSwipeStart}
+            onPointerUp={onSwipeEnd}
+            onPointerCancel={() => {
+              swipeX.current = null;
+            }}
           >
             <p id={labelId} className="sr-only">
               {title}: {current.caption}
