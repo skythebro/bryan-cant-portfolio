@@ -48,7 +48,6 @@ const personJsonLd = {
   alternateName: [...profile.aliases],
   jobTitle: profile.role,
   email: `mailto:${profile.email}`,
-  telephone: profile.phoneHref,
   address: {
     "@type": "PostalAddress",
     addressLocality: "Antwerp",

@@ -1,4 +1,4 @@
-import { Mail, Phone } from "lucide-react";
+import { Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { profile } from "@/lib/content";
 
@@ -12,9 +12,7 @@ export function ContactCta() {
             Hire the person who already shipped to users
           </h2>
           <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground">
-            Belgium · Antwerp. Available immediately. Dutch and English without
-            friction. If you need a junior who has already designed interfaces
-            and kept mods alive through game patches, write.
+            Belgium · Antwerp. Available now. Dutch and English. Email is fine.
           </p>
           <div className="mt-6 flex flex-wrap gap-2">
             <Button
@@ -23,14 +21,6 @@ export function ContactCta() {
             >
               <Mail />
               {profile.email}
-            </Button>
-            <Button
-              variant="outline"
-              nativeButton={false}
-              render={<a href={profile.phoneHref} />}
-            >
-              <Phone />
-              {profile.phone}
             </Button>
             <Button
               variant="outline"

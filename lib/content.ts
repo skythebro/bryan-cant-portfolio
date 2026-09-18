@@ -19,8 +19,6 @@ export const profile = {
     alt: "Skythebro avatar for Bryan Cant. A chibi character used as Sky's public identity.",
   },
   email: "bryancant@live.be",
-  phone: "+32 479 22 92 09",
-  phoneHref: "tel:+32479229209",
   links: {
     github: "https://github.com/skythebro",
     githubSchool: "https://github.com/SkyKDG",
