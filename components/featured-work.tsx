@@ -2,9 +2,42 @@
 
 import { AnimatePresence } from "framer-motion";
 import { useMemo, useState } from "react";
-import { personas, projects, type Persona } from "@/lib/content";
+import { personas, projects, type Persona, type Project } from "@/lib/content";
 import { ProjectCard } from "@/components/project-card";
+import { SectionHeading } from "@/components/section-heading";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
+function arrangeCards(items: Project[]) {
+  const lead = items.filter((project) => project.featured);
+  const rest = items.filter((project) => !project.featured);
+  const withShots = rest.filter((project) => (project.shots?.length ?? 0) > 0);
+  const compact = rest.filter((project) => (project.shots?.length ?? 0) === 0);
+  return { lead, withShots, compact };
+}
+
+function CardGrid({
+  items,
+  indexOffset,
+}: {
+  items: Project[];
+  indexOffset: number;
+}) {
+  if (items.length === 0) return null;
+  const lastSpans = items.length % 2 === 1;
+
+  return (
+    <div className="grid items-start gap-4 md:grid-cols-2">
+      {items.map((project, index) => (
+        <div
+          key={project.id}
+          className={lastSpans && index === items.length - 1 ? "md:col-span-2" : undefined}
+        >
+          <ProjectCard project={project} index={indexOffset + index} />
+        </div>
+      ))}
+    </div>
+  );
+}
 
 export function FeaturedWork() {
   const [persona, setPersona] = useState<Persona>("ui");
@@ -17,39 +50,33 @@ export function FeaturedWork() {
     [persona],
   );
 
+  const { lead, withShots, compact } = arrangeCards(visible);
+
   return (
-    <section id="work" className="scroll-mt-16">
-      <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-        <div>
-          <p className="spec">01 — Featured engineering</p>
-          <h2 className="mt-1 text-2xl font-medium tracking-tight">
-            Three desks, one person
-          </h2>
-        </div>
-        <p className="max-w-md text-sm text-muted-foreground">
-          Enterprise integrations, shipped mods with users, and product UI —
-          Better UI, Avalon Mod Manager, and Avalon Atlas carry Nexus gallery
-          shots. Same engineer.
-        </p>
-      </div>
+    <section id="work" className="relative z-0 scroll-mt-20">
+      <SectionHeading eyebrow="Featured work" title="Three desks, one person">
+        Enterprise integrations, shipped mods with users, and product UI.
+        Better UI, Avalon Mod Manager, and Avalon Atlas carry Nexus gallery
+        shots. Same engineer.
+      </SectionHeading>
 
       <Tabs
         value={persona}
         onValueChange={(value) => setPersona(value as Persona)}
-        className="gap-4"
+        className="gap-6"
       >
         <TabsList
-          variant="line"
-          className="h-auto w-full flex-wrap justify-start gap-0 border-b border-border p-0"
+          variant="default"
+          className="relative z-10 h-auto w-full flex-wrap justify-start gap-1.5 rounded-2xl bg-card/80 p-1.5"
         >
           {personas.map((item) => (
             <TabsTrigger
               key={item.id}
               value={item.id}
-              className="h-auto flex-none flex-col items-start rounded-none px-3 py-2.5 text-left after:bg-primary data-active:text-foreground"
+              className="h-auto flex-none flex-col items-start whitespace-normal rounded-xl px-3.5 py-2 text-left after:hidden data-active:bg-background data-active:text-foreground"
             >
               <span className="text-sm font-medium">{item.label}</span>
-              <span className="hidden font-mono text-[10px] font-normal tracking-wide text-muted-foreground sm:block">
+              <span className="hidden text-[11px] font-normal text-muted-foreground sm:block">
                 {item.hint}
               </span>
             </TabsTrigger>
@@ -57,18 +84,22 @@ export function FeaturedWork() {
         </TabsList>
 
         {personas.map((item) => (
-          <TabsContent key={item.id} value={item.id}>
+          <TabsContent key={item.id} value={item.id} className="relative z-0">
             <AnimatePresence mode="wait">
               {persona === item.id ? (
-                <div className="grid gap-3 md:grid-cols-2">
-                  {visible.map((project, index) => (
-                    <div
+                <div className="flex flex-col gap-5">
+                  {lead.map((project, index) => (
+                    <ProjectCard
                       key={project.id}
-                      className={project.featured ? "md:col-span-2" : undefined}
-                    >
-                      <ProjectCard project={project} index={index} />
-                    </div>
+                      project={project}
+                      index={index}
+                    />
                   ))}
+                  <CardGrid items={withShots} indexOffset={lead.length} />
+                  <CardGrid
+                    items={compact}
+                    indexOffset={lead.length + withShots.length}
+                  />
                 </div>
               ) : null}
             </AnimatePresence>

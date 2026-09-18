@@ -1,6 +1,6 @@
-# Bryan Cant — portfolio
+# Bryan Cant, portfolio
 
-Static personal site for **Bryan Cant** (Sky / SkyBreeze), junior software engineer in Stabroek, Belgium. Next.js App Router, TypeScript, Tailwind CSS, `output: 'export'`. No backend, no paid services.
+Static personal site for **Bryan Cant** (Sky / SkyBreeze), junior software engineer in Belgium · Antwerp. Next.js App Router, TypeScript, Tailwind CSS, `output: 'export'`. No backend, no paid services.
 
 ## Run locally
 
@@ -18,9 +18,9 @@ npm run lint
 
 ## Design
 
-Tokens (color, type, motion) live in [DESIGN.md](./DESIGN.md). Content is factual only — see `lib/content.ts`. Metrics marked `~` come from Bryan’s brief (Nexus unique downloads / Thunderstore). Links that could not be verified are omitted, not invented.
+Tokens (color, type, motion) live in [DESIGN.md](./DESIGN.md). Content is factual only. See `lib/content.ts`. Metrics marked `~` come from Bryan’s brief (Nexus unique downloads / Thunderstore). Links that could not be verified are omitted, not invented.
 
-Photo: `public/bryan.jpg` is the CV headshot (same outdoor portrait as the résumé).
+Portrait: `public/skythebro.png` is the public skythebro avatar (GitHub-style character), not the CV photo.
 
 FoA gallery shots live in `public/foa/` (Nexus images from therealskybro). Featured UI cards — Better UI, Avalon Mod Manager, Avalon Atlas — plus Wyrd Sight, Better Mounts, and Better Movement open them in a lightbox. Better UI ships rarity-color inventory + potion subcategory shots; AMM ships the Options→MODS list plus the native setting tooltip.
 

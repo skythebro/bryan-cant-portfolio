@@ -1,34 +1,34 @@
+import { SectionHeading } from "@/components/section-heading";
 import { timeline } from "@/lib/content";
 
 const kindLabel = {
-  edu: "Edu",
+  edu: "Education",
   job: "Job",
-  release: "Ship",
+  release: "Release",
 } as const;
 
 export function Timeline() {
   return (
-    <section id="timeline" className="scroll-mt-16">
-      <p className="spec">03 — Timeline</p>
-      <h2 className="mt-1 text-2xl font-medium tracking-tight">
-        Education, jobs, releases
-      </h2>
-      <ol className="mt-4 divide-y divide-border border border-border">
+    <section id="timeline" className="scroll-mt-20">
+      <SectionHeading eyebrow="Timeline" title="Education, jobs, releases" />
+      <ol className="relative space-y-0 border-l border-border/80 pl-6">
         {timeline.map((item) => (
-          <li
-            key={item.id}
-            className="grid gap-2 px-4 py-3 sm:grid-cols-[7.5rem_3.25rem_1fr] sm:items-baseline"
-          >
-            <time className="font-mono text-[11px] text-muted-foreground">
-              {item.when}
-            </time>
-            <span className="spec w-fit border border-border px-1.5 py-0.5 text-primary">
+          <li key={item.id} className="relative pb-7 last:pb-0">
+            <span
+              className="absolute -left-[1.54rem] top-1.5 size-2.5 rounded-full bg-primary ring-4 ring-background"
+              aria-hidden
+            />
+            <p className="text-sm text-primary">
               {kindLabel[item.kind]}
-            </span>
-            <div>
-              <h3 className="text-sm font-medium">{item.title}</h3>
-              <p className="mt-1 text-sm text-muted-foreground">{item.detail}</p>
-            </div>
+              <span className="text-foreground/30"> · </span>
+              <time>{item.when}</time>
+            </p>
+            <h3 className="mt-1 text-base font-semibold tracking-tight">
+              {item.title}
+            </h3>
+            <p className="mt-1 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+              {item.detail}
+            </p>
           </li>
         ))}
       </ol>

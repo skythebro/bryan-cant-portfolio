@@ -1,11 +1,11 @@
 export const profile = {
   name: "Bryan Cant",
   aliases: ["Sky", "SkyBreeze"],
-  location: "Stabroek, Belgium",
-  region: "Antwerp area",
+  location: "Belgium · Antwerp",
+  region: "Antwerp",
   role: "Junior software engineer",
   headline:
-    "I automate logistics data in C# and ship product UIs that people actually click — in-game, on the desktop, and on the web.",
+    "I automate logistics data in C# and ship product UIs that people actually click. In-game, on the desktop, and on the web.",
   status: "Available immediately",
   seeking:
     "Junior software / fullstack / Java / .NET / React. Hybrid OK.",
@@ -15,8 +15,8 @@ export const profile = {
     { code: "FR", label: "French", level: "Average" },
   ],
   photo: {
-    src: "/bryan.jpg",
-    alt: "Portrait of Bryan Cant, junior software engineer based in Stabroek, Belgium.",
+    src: "/skythebro.png",
+    alt: "Skythebro avatar for Bryan Cant. A chibi character used as Sky's public identity.",
   },
   email: "bryancant@live.be",
   phone: "+32 479 22 92 09",
@@ -49,7 +49,7 @@ export const proofStrip = [
   { value: "~50.8k", label: "unique Nexus downloads" },
   { value: "~16", label: "Nexus mods shipped" },
   { value: "11,165", label: "Better Movement unique DLs" },
-  { value: "1.5.2", label: "Icarus Workshop" },
+  { value: "1.5.3", label: "Icarus Workshop" },
 ] as const;
 
 export type Persona = "systems" | "mods" | "ui";
@@ -409,15 +409,15 @@ export const projects: Project[] = [
     id: "icarus-workshop",
     personas: ["mods", "ui", "systems"],
     title: "Icarus Workshop",
-    kicker: "Desktop + server agent · PySide6 · v1.5.2",
+    kicker: "Desktop + server agent · PySide6 · v1.5.3",
     summary:
       "Windows mod manager for Icarus: merge EXMOD packs, edit, pull the community database, share profiles, stage UE4SS. Optional IMM Server Agent on a dedicated box. GitHub Actions ships onedir zips; source stays private, releases are public.",
     tags: ["Python", "PySide6", "GitHub Actions"],
-    metrics: [{ value: "1.5.2", label: "latest release" }],
+    metrics: [{ value: "1.5.3", label: "latest release" }],
     links: [
       {
         label: "Releases",
-        href: "https://github.com/SkyKDG/imm-workshop-releases/releases/tag/v1.5.2",
+        href: "https://github.com/SkyKDG/imm-workshop-releases/releases/tag/v1.5.3",
       },
     ],
     status: "shipped",
@@ -537,10 +537,10 @@ export type TimelineItem = {
 
 export const timeline: TimelineItem[] = [
   {
-    id: "workshop-152",
+    id: "workshop-153",
     kind: "release",
     when: "2026-09",
-    title: "Icarus Workshop 1.5.2",
+    title: "Icarus Workshop 1.5.3",
     detail:
       "Desktop manager + server agent. Nexus sign-in, Credential Manager tokens, GitHub Actions zips.",
   },
@@ -617,6 +617,6 @@ export const personas: {
   {
     id: "ui",
     label: "UI & Product Design",
-    hint: "Better UI, AMM, Atlas — with shots",
+    hint: "Better UI, AMM, Atlas. With shots",
   },
 ];

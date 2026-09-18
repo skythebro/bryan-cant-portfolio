@@ -16,9 +16,9 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
-const title = `${profile.name} — Junior software engineer`;
+const title = `${profile.name}, junior software engineer`;
 const description =
-  "Stabroek, Belgium. Available immediately for junior software / fullstack / Java / .NET / React. C# automation, shipped game UIs, desktop tooling.";
+  "Belgium · Antwerp. Available immediately for junior software / fullstack / Java / .NET / React. C# automation, shipped game UIs, desktop tooling.";
 
 export const metadata: Metadata = {
   title,
@@ -51,8 +51,7 @@ const personJsonLd = {
   telephone: profile.phoneHref,
   address: {
     "@type": "PostalAddress",
-    addressLocality: "Stabroek",
-    addressRegion: "Antwerp",
+    addressLocality: "Antwerp",
     addressCountry: "BE",
   },
   url: profile.links.github,
