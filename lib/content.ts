@@ -172,7 +172,7 @@ export const projects: Project[] = [
   },
   {
     id: "avalon-manager",
-    personas: ["ui", "mods"],
+    personas: ["mods", "ui"],
     title: "Avalon Mod Manager",
     kicker: "Nexus 90 · Options → MODS",
     summary:
@@ -208,7 +208,7 @@ export const projects: Project[] = [
   },
   {
     id: "avalon-atlas",
-    personas: ["ui", "mods"],
+    personas: ["mods", "ui"],
     title: "Avalon Atlas",
     kicker: "Nexus 265 · minimap / HUD / FOW",
     summary:
@@ -598,6 +598,11 @@ export const timeline: TimelineItem[] = [
     detail: "Secondary-track ondernemen & IT.",
   },
 ];
+
+/** Lead/featured card only when this desk is the project's primary persona. */
+export function isFeaturedLead(project: Project, persona: Persona) {
+  return Boolean(project.featured) && project.personas[0] === persona;
+}
 
 export const personas: {
   id: Persona;

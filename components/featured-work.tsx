@@ -2,14 +2,20 @@
 
 import { AnimatePresence } from "framer-motion";
 import { useMemo, useState } from "react";
-import { personas, projects, type Persona, type Project } from "@/lib/content";
+import {
+  isFeaturedLead,
+  personas,
+  projects,
+  type Persona,
+  type Project,
+} from "@/lib/content";
 import { ProjectCard } from "@/components/project-card";
 import { SectionHeading } from "@/components/section-heading";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-function arrangeCards(items: Project[]) {
-  const lead = items.filter((project) => project.featured);
-  const rest = items.filter((project) => !project.featured);
+function arrangeCards(items: Project[], persona: Persona) {
+  const lead = items.filter((project) => isFeaturedLead(project, persona));
+  const rest = items.filter((project) => !isFeaturedLead(project, persona));
   const withShots = rest.filter((project) => (project.shots?.length ?? 0) > 0);
   const compact = rest.filter((project) => (project.shots?.length ?? 0) === 0);
   return { lead, withShots, compact };
@@ -36,7 +42,7 @@ function CardGrid({
               : "h-full"
           }
         >
-          <ProjectCard project={project} index={indexOffset + index} />
+          <ProjectCard project={project} index={indexOffset + index} lead={false} />
         </div>
       ))}
     </div>
@@ -54,7 +60,7 @@ export function FeaturedWork() {
     [persona],
   );
 
-  const { lead, withShots, compact } = arrangeCards(visible);
+  const { lead, withShots, compact } = arrangeCards(visible, persona);
 
   return (
     <section id="work" className="relative z-0 scroll-mt-20">
@@ -66,7 +72,11 @@ export function FeaturedWork() {
 
       <Tabs
         value={persona}
-        onValueChange={(value) => setPersona(value as Persona)}
+        onValueChange={(value) => {
+          if (value === "systems" || value === "mods" || value === "ui") {
+            setPersona(value);
+          }
+        }}
         className="gap-5"
       >
         <TabsList
@@ -97,6 +107,7 @@ export function FeaturedWork() {
                       key={project.id}
                       project={project}
                       index={index}
+                      lead
                     />
                   ))}
                   <CardGrid items={withShots} indexOffset={lead.length} />
