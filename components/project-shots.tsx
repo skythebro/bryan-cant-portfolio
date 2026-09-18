@@ -85,7 +85,7 @@ export function ProjectShots({
             aria-modal="true"
             aria-labelledby={labelId}
             tabIndex={-1}
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-[oklch(0.12_0.02_55/0.88)] p-4 sm:p-8"
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-[oklch(0.1_0.02_55/0.94)] p-4 sm:p-8"
             onClick={close}
           >
             <p id={labelId} className="sr-only">
