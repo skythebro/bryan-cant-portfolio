@@ -543,6 +543,14 @@ export const timeline: TimelineItem[] = [
       "Desktop manager + server agent. Nexus sign-in, Credential Manager tokens, GitHub Actions zips.",
   },
   {
+    id: "foa-mods",
+    kind: "release",
+    when: "2026",
+    title: "FoA Nexus catalog",
+    detail:
+      "Confirmed Nexus: AMM 90, Wyrd Sight 94, Better Mounts 101, Better Movement 102 (11,165 unique / 177 endorsements, scrape ~30 Aug 2026), Better UI 111, Avalon Atlas 265, Appearance Mirror 313, Interior Bonfire 314.",
+  },
+  {
     id: "steinweg-job",
     kind: "job",
     when: "2026-02 → 2026-07",
@@ -564,14 +572,6 @@ export const timeline: TimelineItem[] = [
     when: "2025-03 → 2025-06",
     title: "Internship — Apvine",
     detail: "Functional analysis, Agile, Java/Mendix document automation.",
-  },
-  {
-    id: "foa-mods",
-    kind: "release",
-    when: "2025",
-    title: "FoA Nexus catalog",
-    detail:
-      "Confirmed Nexus: AMM 90, Wyrd Sight 94, Better Mounts 101, Better Movement 102 (11,165 unique / 177 endorsements, scrape ~30 Aug 2026), Better UI 111, Avalon Atlas 265, Appearance Mirror 313, Interior Bonfire 314.",
   },
   {
     id: "vrising",

@@ -12,7 +12,7 @@ export function ContactCta() {
             Hire the person who already shipped to users
           </h2>
           <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground">
-            Belgium · Antwerp. Available now. Dutch and English. Email is fine.
+            Belgium · Antwerp. Available now. Dutch and English. Write me.
           </p>
           <div className="mt-6 flex flex-wrap gap-2">
             <Button
