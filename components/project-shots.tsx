@@ -1,9 +1,13 @@
 "use client";
 
-import { useEffect, useId, useState } from "react";
-import { X } from "lucide-react";
+import { useCallback, useEffect, useId, useRef, useState } from "react";
+import { createPortal } from "react-dom";
+import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import type { ProjectShot } from "@/lib/content";
 import { assetPath } from "@/lib/paths";
+
+const controlClassName =
+  "inline-flex size-11 items-center justify-center rounded-full border border-primary/30 bg-[oklch(0.2_0.018_55/0.82)] text-primary shadow-[0_10px_28px_-16px_oklch(0.1_0.02_50/0.8)] backdrop-blur-sm transition-colors hover:border-primary/60 hover:bg-primary/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/60";
 
 export function ProjectShots({
   shots,
@@ -15,27 +19,43 @@ export function ProjectShots({
   featured?: boolean;
 }) {
   const labelId = useId();
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const lastTrigger = useRef<HTMLButtonElement | null>(null);
   const [open, setOpen] = useState<number | null>(null);
   const [failed, setFailed] = useState<Record<string, boolean>>({});
   const visible = shots.filter((shot) => !failed[shot.src]);
   const current = open !== null ? visible[open] : null;
+  const canCycle = visible.length > 1;
 
-  const close = () => setOpen(null);
+  const close = useCallback(() => {
+    setOpen(null);
+    lastTrigger.current?.focus();
+  }, []);
+
+  const step = useCallback((delta: number) => {
+    setOpen((index) => {
+      if (index === null) return index;
+      const count = shots.filter((shot) => !failed[shot.src]).length;
+      if (count === 0) return null;
+      return (index + delta + count) % count;
+    });
+  }, [failed, shots]);
 
   useEffect(() => {
     if (open === null) return;
-    const count = visible.length;
+    dialogRef.current?.focus();
     const onKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setOpen(null);
+      if (event.key === "Escape") {
+        event.preventDefault();
+        close();
+      }
       if (event.key === "ArrowRight") {
-        setOpen((index) =>
-          index === null ? index : (index + 1 + count) % count,
-        );
+        event.preventDefault();
+        step(1);
       }
       if (event.key === "ArrowLeft") {
-        setOpen((index) =>
-          index === null ? index : (index - 1 + count) % count,
-        );
+        event.preventDefault();
+        step(-1);
       }
     };
     window.addEventListener("keydown", onKey);
@@ -45,7 +65,7 @@ export function ProjectShots({
       window.removeEventListener("keydown", onKey);
       document.body.style.overflow = previous;
     };
-  }, [open, visible.length]);
+  }, [close, open, step]);
 
   if (visible.length === 0) return null;
 
@@ -56,6 +76,86 @@ export function ProjectShots({
         ? "grid-cols-2"
         : "grid-cols-1";
 
+  const lightbox =
+    current
+      ? createPortal(
+          <div
+            ref={dialogRef}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby={labelId}
+            tabIndex={-1}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-[oklch(0.12_0.02_55/0.88)] p-4 sm:p-8"
+            onClick={close}
+          >
+            <p id={labelId} className="sr-only">
+              {title}: {current.caption}
+            </p>
+
+            {canCycle ? (
+              <button
+                type="button"
+                className={`${controlClassName} absolute left-3 top-1/2 z-10 -translate-y-1/2 sm:left-6`}
+                aria-label="Previous screenshot"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  step(-1);
+                }}
+              >
+                <ChevronLeft className="size-5" />
+              </button>
+            ) : null}
+
+            <figure
+              className="relative flex max-h-full w-full max-w-6xl flex-col items-center"
+              onClick={(event) => event.stopPropagation()}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={assetPath(current.src)}
+                alt={current.alt}
+                className="max-h-[78vh] w-full rounded-2xl border border-border object-contain shadow-[0_24px_60px_-28px_oklch(0.1_0.02_50/0.85)]"
+              />
+              <figcaption className="mt-3 flex w-full items-center justify-between gap-3 px-1 text-sm text-foreground/85">
+                <span>{current.caption}</span>
+                {canCycle ? (
+                  <span className="shrink-0 text-primary">
+                    {open! + 1} / {visible.length}
+                  </span>
+                ) : null}
+              </figcaption>
+            </figure>
+
+            {canCycle ? (
+              <button
+                type="button"
+                className={`${controlClassName} absolute right-3 top-1/2 z-10 -translate-y-1/2 sm:right-6`}
+                aria-label="Next screenshot"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  step(1);
+                }}
+              >
+                <ChevronRight className="size-5" />
+              </button>
+            ) : null}
+
+            <button
+              type="button"
+              className={`${controlClassName} absolute top-3 right-3 sm:top-6 sm:right-6`}
+              aria-label="Close screenshot"
+              onClick={(event) => {
+                event.stopPropagation();
+                close();
+              }}
+            >
+              <X className="size-5" />
+            </button>
+          </div>,
+          document.body,
+        )
+      : null;
+
   return (
     <>
       <ul className={`mt-5 grid gap-4 ${grid}`}>
@@ -63,7 +163,10 @@ export function ProjectShots({
           <li key={shot.src} className="min-w-0">
             <button
               type="button"
-              onClick={() => setOpen(index)}
+              onClick={(event) => {
+                lastTrigger.current = event.currentTarget;
+                setOpen(index);
+              }}
               className="group block w-full overflow-hidden rounded-2xl border border-border bg-muted text-left outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-ring/50"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -93,47 +196,7 @@ export function ProjectShots({
           </li>
         ))}
       </ul>
-
-      {current ? (
-        <div
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby={labelId}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-3 sm:p-8"
-          onClick={close}
-        >
-          <div
-            className="relative max-h-full w-full max-w-6xl"
-            onClick={(event) => event.stopPropagation()}
-          >
-            <p id={labelId} className="sr-only">
-              {title}: {current.caption}
-            </p>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={assetPath(current.src)}
-              alt={current.alt}
-              className="max-h-[82vh] w-full rounded-xl object-contain"
-            />
-            <p className="mt-2 flex items-center justify-between gap-3 text-sm text-white/80">
-              <span>{current.caption}</span>
-              {visible.length > 1 ? (
-                <span>
-                  {open! + 1} / {visible.length} · ← →
-                </span>
-              ) : null}
-            </p>
-            <button
-              type="button"
-              onClick={close}
-              className="absolute -top-1 right-0 inline-flex size-8 items-center justify-center rounded-full border border-white/20 bg-black/50 text-white hover:border-white/50"
-              aria-label="Close screenshot"
-            >
-              <X className="size-4" />
-            </button>
-          </div>
-        </div>
-      ) : null}
+      {lightbox}
     </>
   );
 }
