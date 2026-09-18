@@ -448,7 +448,7 @@ export const projects: Project[] = [
     title: "Active C# workspaces",
     kicker: "TaintedGrailModWorkspace (private) · BigAmbitionsWorkspace",
     summary:
-      "Confirmed FoA Nexus mods ship from a private TaintedGrailModWorkspace (BepInEx 5 Mono + Harmony), including Appearance Mirror 313 and Interior Bonfire 314. Unpublished scaffolding — not claimed live: AvalonComfort, AvalonUtilitySpells, DualTwoHanded. BigAmbitionsWorkspace is the other C# bench.",
+      "Confirmed FoA Nexus mods ship from a private TaintedGrailModWorkspace (BepInEx 5 Mono + Harmony), including Appearance Mirror 313 and Interior Bonfire 314. Unpublished scaffolding — not claimed live: AvalonComfort, AvalonUtilitySpells. BigAmbitionsWorkspace is the other C# bench.",
     tags: ["C#", "BepInEx 5 Mono", "Harmony"],
     links: [
       { label: "Nexus therealskybro", href: profile.links.nexus },
