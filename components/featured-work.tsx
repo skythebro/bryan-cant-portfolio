@@ -1,15 +1,22 @@
 "use client";
 
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useMemo, useState } from "react";
-import { personas, projects, type Persona, type Project } from "@/lib/content";
+import { cn } from "@/lib/utils";
+import {
+  isFeaturedLead,
+  personas,
+  projects,
+  type Persona,
+  type Project,
+} from "@/lib/content";
 import { ProjectCard } from "@/components/project-card";
 import { SectionHeading } from "@/components/section-heading";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { tabsListVariants, tabsTriggerClassName } from "@/components/ui/tabs";
 
-function arrangeCards(items: Project[]) {
-  const lead = items.filter((project) => project.featured);
-  const rest = items.filter((project) => !project.featured);
+function arrangeCards(items: Project[], persona: Persona) {
+  const lead = items.filter((project) => isFeaturedLead(project, persona));
+  const rest = items.filter((project) => !isFeaturedLead(project, persona));
   const withShots = rest.filter((project) => (project.shots?.length ?? 0) > 0);
   const compact = rest.filter((project) => (project.shots?.length ?? 0) === 0);
   return { lead, withShots, compact };
@@ -36,7 +43,7 @@ function CardGrid({
               : "h-full"
           }
         >
-          <ProjectCard project={project} index={indexOffset + index} />
+          <ProjectCard project={project} index={indexOffset + index} lead={false} />
         </div>
       ))}
     </div>
@@ -54,7 +61,7 @@ export function FeaturedWork() {
     [persona],
   );
 
-  const { lead, withShots, compact } = arrangeCards(visible);
+  const { lead, withShots, compact } = arrangeCards(visible, persona);
 
   return (
     <section id="work" className="relative z-0 scroll-mt-20">
@@ -64,52 +71,93 @@ export function FeaturedWork() {
         shots. Same engineer.
       </SectionHeading>
 
-      <Tabs
-        value={persona}
-        onValueChange={(value) => setPersona(value as Persona)}
-        className="gap-5"
-      >
-        <TabsList
-          variant="segmented"
-          className="w-full flex-wrap justify-start"
+      <div className="group/tabs flex flex-col gap-5" data-orientation="horizontal">
+        <div
+          role="tablist"
+          aria-label="Featured desks"
+          data-slot="tabs-list"
+          data-variant="segmented"
+          className={cn(
+            tabsListVariants({ variant: "segmented" }),
+            "w-full flex-wrap justify-start",
+          )}
         >
-          {personas.map((item) => (
-            <TabsTrigger
-              key={item.id}
-              value={item.id}
-              className="flex-col items-start whitespace-normal text-left"
-            >
-              <span className="text-sm leading-5 font-medium">{item.label}</span>
-              <span className="hidden text-[11px] leading-4 font-normal text-muted-foreground sm:block">
-                {item.hint}
-              </span>
-            </TabsTrigger>
-          ))}
-        </TabsList>
+          {personas.map((item) => {
+            const active = persona === item.id;
+            return (
+              <button
+                key={item.id}
+                type="button"
+                role="tab"
+                id={`desk-tab-${item.id}`}
+                aria-controls="desk-tab-panel"
+                aria-selected={active}
+                data-slot="tabs-trigger"
+                data-active={active ? "" : undefined}
+                tabIndex={active ? 0 : -1}
+                className={cn(
+                  tabsTriggerClassName,
+                  "flex-col items-start whitespace-normal text-left",
+                )}
+                onClick={() => setPersona(item.id)}
+                onKeyDown={(event) => {
+                  const index = personas.findIndex((entry) => entry.id === persona);
+                  if (index < 0) return;
+                  if (event.key === "ArrowRight" || event.key === "ArrowDown") {
+                    event.preventDefault();
+                    setPersona(personas[(index + 1) % personas.length].id);
+                  }
+                  if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
+                    event.preventDefault();
+                    setPersona(
+                      personas[(index - 1 + personas.length) % personas.length]
+                        .id,
+                    );
+                  }
+                }}
+              >
+                <span className="text-sm leading-5 font-medium">{item.label}</span>
+                <span className="hidden text-[11px] leading-4 font-normal text-muted-foreground sm:block">
+                  {item.hint}
+                </span>
+              </button>
+            );
+          })}
+        </div>
 
-        {personas.map((item) => (
-          <TabsContent key={item.id} value={item.id}>
-            <AnimatePresence mode="wait">
-              {persona === item.id ? (
-                <div className="flex flex-col gap-5">
-                  {lead.map((project, index) => (
-                    <ProjectCard
-                      key={project.id}
-                      project={project}
-                      index={index}
-                    />
-                  ))}
-                  <CardGrid items={withShots} indexOffset={lead.length} />
-                  <CardGrid
-                    items={compact}
-                    indexOffset={lead.length + withShots.length}
-                  />
-                </div>
-              ) : null}
-            </AnimatePresence>
-          </TabsContent>
-        ))}
-      </Tabs>
+        <div
+          role="tabpanel"
+          id="desk-tab-panel"
+          aria-labelledby={`desk-tab-${persona}`}
+          data-slot="tabs-content"
+          className="flex-1 text-sm outline-none"
+        >
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={persona}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 6 }}
+              transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+              className="flex flex-col gap-5"
+            >
+              {lead.map((project, index) => (
+                <ProjectCard
+                  key={project.id}
+                  project={project}
+                  index={index}
+                  lead
+                />
+              ))}
+              <CardGrid items={withShots} indexOffset={lead.length} />
+              <CardGrid
+                items={compact}
+                indexOffset={lead.length + withShots.length}
+              />
+            </motion.div>
+          </AnimatePresence>
+        </div>
+      </div>
     </section>
   );
 }

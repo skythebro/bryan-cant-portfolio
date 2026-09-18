@@ -17,9 +17,11 @@ function kickerLine(kicker: string) {
 export function ProjectCard({
   project,
   index,
+  lead = false,
 }: {
   project: Project;
   index: number;
+  lead?: boolean;
 }) {
   const meta = kickerLine(project.kicker);
 
@@ -35,13 +37,13 @@ export function ProjectCard({
         ease: [0.22, 1, 0.36, 1],
       }}
       className={`panel flex h-full min-w-0 flex-col ${
-        project.featured ? "p-6 sm:p-8" : "p-5"
+        lead ? "p-6 sm:p-8" : "p-5"
       }`}
     >
       <header className="flex min-w-0 items-start justify-between gap-3">
         <h3
           className={`relative z-10 min-w-0 flex-1 text-pretty font-semibold tracking-tight ${
-            project.featured ? "text-2xl sm:text-3xl" : "text-lg"
+            lead ? "text-2xl sm:text-3xl" : "text-lg"
           }`}
         >
           {project.title}
@@ -72,14 +74,14 @@ export function ProjectCard({
       <div className="flex min-h-0 flex-1 flex-col">
         <p
           className={`relative z-10 max-w-3xl text-[15px] leading-relaxed text-muted-foreground ${
-            project.featured ? "mt-4" : "mt-3"
+            lead ? "mt-4" : "mt-3"
           }`}
         >
           {project.summary}
         </p>
 
         {project.highlights && project.highlights.length > 0 ? (
-          <ul className={`space-y-2 ${project.featured ? "mt-5" : "mt-3"}`}>
+          <ul className={`space-y-2 ${lead ? "mt-5" : "mt-3"}`}>
             {project.highlights.map((item) => (
               <li
                 key={item}
@@ -95,7 +97,7 @@ export function ProjectCard({
           <ProjectShots
             shots={project.shots}
             title={project.title}
-            featured={project.featured}
+            featured={lead}
           />
         ) : null}
 
