@@ -34,7 +34,7 @@ export function ProjectCard({
         delay: index * 0.03,
         ease: [0.22, 1, 0.36, 1],
       }}
-      className={`panel flex min-w-0 flex-col ${
+      className={`panel flex h-full min-w-0 flex-col ${
         project.featured ? "p-6 sm:p-8" : "p-5"
       }`}
     >
@@ -69,52 +69,54 @@ export function ProjectCard({
         </p>
       ) : null}
 
-      <p
-        className={`relative z-10 max-w-3xl text-[15px] leading-relaxed text-muted-foreground ${
-          project.featured ? "mt-4" : "mt-3"
-        }`}
-      >
-        {project.summary}
-      </p>
+      <div className="flex min-h-0 flex-1 flex-col">
+        <p
+          className={`relative z-10 max-w-3xl text-[15px] leading-relaxed text-muted-foreground ${
+            project.featured ? "mt-4" : "mt-3"
+          }`}
+        >
+          {project.summary}
+        </p>
 
-      {project.highlights && project.highlights.length > 0 ? (
-        <ul className={`space-y-2 ${project.featured ? "mt-5" : "mt-3"}`}>
-          {project.highlights.map((item) => (
-            <li
-              key={item}
-              className="relative pl-3.5 text-sm leading-relaxed text-foreground/88 before:absolute before:left-0 before:top-[0.55em] before:size-1.5 before:rounded-full before:bg-primary/80"
-            >
-              {item}
-            </li>
-          ))}
-        </ul>
-      ) : null}
+        {project.highlights && project.highlights.length > 0 ? (
+          <ul className={`space-y-2 ${project.featured ? "mt-5" : "mt-3"}`}>
+            {project.highlights.map((item) => (
+              <li
+                key={item}
+                className="relative pl-3.5 text-sm leading-relaxed text-foreground/88 before:absolute before:left-0 before:top-[0.55em] before:size-1.5 before:rounded-full before:bg-primary/80"
+              >
+                {item}
+              </li>
+            ))}
+          </ul>
+        ) : null}
 
-      {project.shots && project.shots.length > 0 ? (
-        <ProjectShots
-          shots={project.shots}
-          title={project.title}
-          featured={project.featured}
-        />
-      ) : null}
+        {project.shots && project.shots.length > 0 ? (
+          <ProjectShots
+            shots={project.shots}
+            title={project.title}
+            featured={project.featured}
+          />
+        ) : null}
 
-      {project.metrics && project.metrics.length > 0 ? (
-        <ul className="mt-4 flex flex-wrap gap-2">
-          {project.metrics.map((metric) => (
-            <li
-              key={`${metric.value}-${metric.label}`}
-              className="rounded-full border border-primary/20 bg-primary/10 px-2.5 py-1"
-            >
-              <span className="text-sm font-semibold text-primary">
-                {metric.value}
-              </span>
-              <span className="ml-1.5 text-xs text-muted-foreground">
-                {metric.label}
-              </span>
-            </li>
-          ))}
-        </ul>
-      ) : null}
+        {project.metrics && project.metrics.length > 0 ? (
+          <ul className="mt-4 flex flex-wrap gap-2">
+            {project.metrics.map((metric) => (
+              <li
+                key={`${metric.value}-${metric.label}`}
+                className="rounded-full border border-primary/20 bg-primary/10 px-2.5 py-1"
+              >
+                <span className="text-sm font-semibold text-primary">
+                  {metric.value}
+                </span>
+                <span className="ml-1.5 text-xs text-muted-foreground">
+                  {metric.label}
+                </span>
+              </li>
+            ))}
+          </ul>
+        ) : null}
+      </div>
 
       <ul className="mt-4 flex flex-wrap gap-1.5">
         {project.tags.map((tag) => (

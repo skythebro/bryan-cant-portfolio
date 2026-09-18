@@ -26,11 +26,15 @@ function CardGrid({
   const lastSpans = items.length % 2 === 1;
 
   return (
-    <div className="grid items-start gap-4 md:grid-cols-2">
+    <div className="grid items-stretch gap-4 md:grid-cols-2">
       {items.map((project, index) => (
         <div
           key={project.id}
-          className={lastSpans && index === items.length - 1 ? "md:col-span-2" : undefined}
+          className={
+            lastSpans && index === items.length - 1
+              ? "h-full md:col-span-2"
+              : "h-full"
+          }
         >
           <ProjectCard project={project} index={indexOffset + index} />
         </div>
@@ -63,20 +67,20 @@ export function FeaturedWork() {
       <Tabs
         value={persona}
         onValueChange={(value) => setPersona(value as Persona)}
-        className="gap-6"
+        className="gap-5"
       >
         <TabsList
-          variant="default"
-          className="relative z-10 h-auto w-full flex-wrap justify-start gap-1.5 rounded-2xl bg-card/80 p-1.5"
+          variant="segmented"
+          className="w-full flex-wrap justify-start"
         >
           {personas.map((item) => (
             <TabsTrigger
               key={item.id}
               value={item.id}
-              className="h-auto flex-none flex-col items-start whitespace-normal rounded-xl px-3.5 py-2 text-left after:hidden data-active:bg-background data-active:text-foreground"
+              className="flex-col items-start whitespace-normal text-left"
             >
-              <span className="text-sm font-medium">{item.label}</span>
-              <span className="hidden text-[11px] font-normal text-muted-foreground sm:block">
+              <span className="text-sm leading-5 font-medium">{item.label}</span>
+              <span className="hidden text-[11px] leading-4 font-normal text-muted-foreground sm:block">
                 {item.hint}
               </span>
             </TabsTrigger>
@@ -84,7 +88,7 @@ export function FeaturedWork() {
         </TabsList>
 
         {personas.map((item) => (
-          <TabsContent key={item.id} value={item.id} className="relative z-0">
+          <TabsContent key={item.id} value={item.id}>
             <AnimatePresence mode="wait">
               {persona === item.id ? (
                 <div className="flex flex-col gap-5">

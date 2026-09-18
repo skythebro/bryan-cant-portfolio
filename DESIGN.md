@@ -36,7 +36,7 @@ Soft sticky header. Compact identity rail (small circular skythebro avatar, bio,
 
 Featured UI cards show a Nexus gallery (`public/foa/`). Click opens a lightbox (Esc / arrows). Captions sit under the shot so they never cover a heading.
 
-Project titles are the card heading. Meta stays a quiet line under the title. No watermark text behind or across titles. Non-featured cards pack by media first and do not stretch to match a taller neighbor.
+Project titles are the card heading. Meta stays a quiet line under the title. No watermark text behind or across titles. Non-featured cards pack by media first. Cards in a row stretch to equal height so short entries do not leave empty gaps beside taller neighbors.
 
 ## Icons
 
