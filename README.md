@@ -22,9 +22,9 @@ Tokens (color, type, motion) live in [DESIGN.md](./DESIGN.md). Content is factua
 
 Portrait: `public/skythebro.png` is the public skythebro avatar (GitHub-style character), not the CV photo.
 
-FoA gallery shots live in `public/foa/` (Nexus images from therealskybro). Featured UI cards — Better UI, Avalon Mod Manager, Avalon Atlas — plus Wyrd Sight, Better Mounts, and Better Movement open them in a lightbox. Better UI ships rarity-color inventory + potion subcategory shots; AMM ships the Options→MODS list plus the native setting tooltip.
+FoA gallery shots live in `public/foa/` (Nexus images from therealskybro). Featured UI cards (Better UI, Avalon Mod Manager, and Avalon Atlas), plus Wyrd Sight, Better Mounts, and Better Movement, open them in a lightbox. Better UI ships rarity-color inventory and potion subcategory shots; AMM ships the Options → MODS list plus the native setting tooltip.
 
-## Deploy — Cloudflare Pages (simplest)
+## Deploy: Cloudflare Pages (simplest)
 
 1. Push this repo to GitHub.
 2. Cloudflare Dashboard → Workers & Pages → Create → Pages → Connect git.
@@ -34,7 +34,7 @@ FoA gallery shots live in `public/foa/` (Nexus images from therealskybro). Featu
 
 No `basePath` needed on a custom domain or `*.pages.dev`.
 
-## Deploy — GitHub Pages (user or repo)
+## Deploy: GitHub Pages (user or repo)
 
 The workflow in `.github/workflows/pages.yml` builds the static export and publishes it.
 

@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 
 const title = `${profile.name}, junior software engineer`;
 const description =
-  "Belgium · Antwerp. Available immediately for junior software / fullstack / Java / .NET / React. C# automation, shipped game UIs, desktop tooling.";
+  "Belgium · Antwerp. Available immediately for junior software, full-stack, Java, .NET, or React. C# automation, shipped game UIs, and desktop tooling.";
 
 export const metadata: Metadata = {
   title,

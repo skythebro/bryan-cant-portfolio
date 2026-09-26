@@ -8,7 +8,7 @@ export const profile = {
     "I automate logistics data in C# and ship product UIs that people actually click. In-game, on the desktop, and on the web.",
   status: "Available immediately",
   seeking:
-    "Junior software / fullstack / Java / .NET / React. Hybrid OK.",
+    "Junior software, full-stack, Java, .NET, or React. Hybrid is fine.",
   languages: [
     { code: "NL", label: "Dutch", level: "Fluent" },
     { code: "EN", label: "English", level: "Fluent" },
@@ -46,7 +46,7 @@ export const heroTags = [
 export const proofStrip = [
   { value: "~50.8k", label: "unique Nexus downloads" },
   { value: "~16", label: "Nexus mods shipped" },
-  { value: "11,165", label: "Better Movement unique DLs" },
+  { value: "11,165", label: "Better Movement unique downloads" },
   { value: "1.5.3", label: "Icarus Workshop" },
 ] as const;
 
@@ -93,7 +93,7 @@ export const projects: Project[] = [
     title: "Steinweg logistics automation",
     kicker: "C. Steinweg Belgium NV · Junior IT · Feb–Jul 2026",
     summary:
-      "Problem: logistics data lived in messy, repeating streams. Architecture: C#, VBA, and Power Query jobs that extract, reshape, and hand the data off. Impact: fewer manual transfers, software first — AD/GPO/RDSH, Meraki, and Zscaler sat beside that work, not in front of it.",
+      "Logistics data lived in messy, repeating streams. C#, VBA, and Power Query jobs extract it, reshape it, and hand it off, so there are fewer manual transfers. Software was the lead. AD, GPO, RDSH, Meraki, and Zscaler sat beside that work, not in front of it.",
     tags: ["C#", "VBA", "Power Query", "SQL", "Windows"],
     links: [],
     status: "shipped",
@@ -114,9 +114,9 @@ export const projects: Project[] = [
     id: "phygital",
     personas: ["systems", "ui"],
     title: "Phygital youth participation",
-    kicker: "KdG Integratieproject · .NET + TypeScript",
+    kicker: "KdG Integratieproject (integration project) · .NET + TypeScript",
     summary:
-      "Team-built platform so young people can file ideas and track them, while municipalities run camera-assisted questionnaires. Hierarchy: platform → subplatform → theme → survey. Roles for head admin, managers, and facilitators. Public snapshot is .NET with a TypeScript client (SignalR, on-device camera).",
+      "Team-built platform so young people can file ideas and track them, while municipalities run camera-assisted questionnaires. Hierarchy: platform, then subplatform, theme, and survey. Roles for head admin, managers, and facilitators. The public code is .NET with a TypeScript client (SignalR, on-device camera).",
     tags: [".NET", "C#", "TypeScript", "SignalR"],
     links: [{ label: "GitHub", href: "https://github.com/skythebro/IP1KDG" }],
     status: "shipped",
@@ -127,7 +127,7 @@ export const projects: Project[] = [
     title: "Java backend, REST + Kafka",
     kicker: "KdG team coursework",
     summary:
-      "Team Java backend with REST endpoints and Kafka-backed analytics. Coursework, not a product launch — real service boundaries and a message pipeline, not a tutorial CRUD page.",
+      "Team Java backend with REST endpoints and Kafka-backed analytics. Coursework, not a product launch. Real service boundaries and a message pipeline, not a tutorial CRUD page.",
     tags: ["Java", "REST", "Kafka"],
     links: [],
     status: "shipped",
@@ -138,10 +138,10 @@ export const projects: Project[] = [
     title: "Better UI",
     kicker: "Nexus 111 · therealskybro · BepInEx 5 Mono + Harmony",
     summary:
-      "Inventory and equipment UX — search, junk, rarity, tooltips, overlays, keyboard and controller. Extra Loadouts live here (`ExtraLoadoutPagesEnabled`), not as a separate product. Socket and transmog overlays on gear.",
+      "Inventory and equipment UX: search, junk, rarity, tooltips, overlays, keyboard, and controller. Extra Loadouts live here (`ExtraLoadoutPagesEnabled`), not as a separate product. Socket and transmog overlays on gear.",
     highlights: [
       "Extra Loadouts off by default: +4 / +8 / +12 rows plus Quick Slots 2, stored per character.",
-      "Search, junk marking, rarity, tooltips, stat overlays — KBM and controller.",
+      "Search, junk marking, rarity, tooltips, and stat overlays for keyboard, mouse, and controller.",
       "Socket and transmog overlays on the equipment sheet.",
     ],
     tags: ["C#", "BepInEx 5 Mono", "Harmony", "Unity UI"],
@@ -155,7 +155,7 @@ export const projects: Project[] = [
       {
         src: "/foa/betterui-111-rarity-colors.jpg",
         alt: "Better UI inventory grid with rarity-tinted tiles and stat overlays on gear and consumables.",
-        caption: "Rarity colors + stat overlays",
+        caption: "Rarity colors and stat overlays",
       },
       {
         src: "/foa/betterui-111-potion-subcategories.jpg",
@@ -174,11 +174,11 @@ export const projects: Project[] = [
     title: "Avalon Mod Manager",
     kicker: "Nexus 90 · Options → MODS",
     summary:
-      "In-game Options → MODS tab. Live BepInEx config: auto-discovers ConfigEntries, nested groups, native PrefOption UI. Sky’s other FoA mods use it so players stay out of .cfg files.",
+      "In-game Options → MODS tab. Live BepInEx config that auto-discovers ConfigEntries, nested groups, and the native PrefOption UI. Sky's other FoA mods use it so players stay out of .cfg files.",
     highlights: [
-      "Auto-discovers ConfigEntries — no hand-edited .cfg for players.",
-      "Nested groups rendered with native PrefOption widgets.",
-      "Shared settings surface for Better UI, Movement, Atlas, Wyrd Sight, Mounts.",
+      "Auto-discovers ConfigEntries, so players skip hand-edited .cfg files.",
+      "Nested groups use native PrefOption widgets.",
+      "Shared settings surface for Better UI, Movement, Atlas, Wyrd Sight, and Mounts.",
     ],
     tags: ["C#", "BepInEx 5 Mono", "Harmony", "Unity UI"],
     links: [
@@ -191,7 +191,7 @@ export const projects: Project[] = [
       {
         src: "/foa/amm-90-updated-look.jpg",
         alt: "Avalon Mod Manager Options MODS tab listing nested PrefOption rows for installed FoA mods.",
-        caption: "Options → MODS — PrefOption rows",
+        caption: "Options → MODS: PrefOption rows",
       },
       {
         src: "/foa/amm-90-tooltips.jpg",
@@ -208,13 +208,13 @@ export const projects: Project[] = [
     id: "avalon-atlas",
     personas: ["mods", "ui"],
     title: "Avalon Atlas",
-    kicker: "Nexus 265 · minimap / HUD / FOW",
+    kicker: "Nexus 265 · minimap, HUD, and fog of war",
     summary:
       "Minimap on authored overworld maps, interior top-down camera, fog of war per character, entity radar. F8 opens a HUD layout editor.",
     highlights: [
       "Authored overworld maps, not a generic radar blob.",
-      "Interior top-down cam + per-character FOW.",
-      "F8 HUD layout editor — players place the map, not the modder.",
+      "Interior top-down camera, and fog of war per character.",
+      "F8 HUD layout editor. Players place the map, not the modder.",
     ],
     tags: ["C#", "BepInEx 5 Mono", "Harmony", "HUD"],
     links: [
@@ -246,9 +246,9 @@ export const projects: Project[] = [
     title: "Appearance Mirror",
     kicker: "Nexus 313 · housing-table appearance",
     summary:
-      "Mid-game character creator from a housing table. The prompt splits Decor vs Appearance.",
+      "Mid-game character creator from a housing table. The prompt splits into Decor and Appearance.",
     highlights: [
-      "Housing-table entry: Decor vs Appearance.",
+      "Housing-table entry: Decor or Appearance.",
       "Ships from TaintedGrailModWorkspace as Nexus 313.",
     ],
     tags: ["C#", "BepInEx 5 Mono", "Harmony", "Unity UI"],
@@ -267,11 +267,11 @@ export const projects: Project[] = [
     title: "Wyrd Sight",
     kicker: "Nexus 94 · loot / plant / storage glow",
     summary:
-      "Glow, spotlight, and holographic outlines for loot, containers, corpses, plants, and ores. Containers take rarity color. Per-category radius and color, plus pulse and particles. Avalon Mod Manager plus live cfg reload.",
+      "Glow, spotlight, and holographic outlines for loot, containers, corpses, plants, and ores. Containers take a rarity color. Each category has its own radius and color, plus pulse and particles. Settings live in Avalon Mod Manager, and the config reloads live.",
     highlights: [
-      "Rarity-colored containers; per-category radius and color.",
-      "Pulse and particles on top of glow / spotlight / holo outlines.",
-      "AMM settings and live cfg reload.",
+      "Rarity-colored containers, with radius and color per category.",
+      "Pulse and particles on top of glow, spotlight, and holographic outlines.",
+      "Avalon Mod Manager settings, with live config reload.",
     ],
     tags: ["C#", "BepInEx 5 Mono", "Harmony"],
     links: [
@@ -297,10 +297,10 @@ export const projects: Project[] = [
     title: "Better Mounts",
     kicker: "Nexus 101 · character-sheet Mount tab",
     summary:
-      "Bonding, breeding, stamina, and stables. A Mount tab on the character sheet. Totem fast-travel vs Stable Actions, plus DigOut / totem dialogue.",
+      "Bonding, breeding, stamina, and stables. A Mount tab on the character sheet. Totem fast-travel is separate from Stable Actions, plus DigOut and totem dialogue.",
     highlights: [
-      "Mount tab on the character sheet — not a hidden debug pane.",
-      "Totem fast-travel vs Stable Actions are separate jobs.",
+      "Mount tab on the character sheet, not a hidden debug pane.",
+      "Totem fast-travel and Stable Actions are separate jobs.",
       "DigOut and totem dialogue.",
     ],
     tags: ["C#", "BepInEx 5 Mono", "Harmony"],
@@ -325,12 +325,12 @@ export const projects: Project[] = [
     id: "better-movement",
     personas: ["mods", "ui"],
     title: "Better Movement",
-    kicker: "Nexus 102 · scrape ~30 Aug 2026",
+    kicker: "Nexus 102 · as of ~30 Aug 2026",
     summary:
       "Sprint, slide, dash, and jump overhaul with presets. In-game settings through Avalon Mod Manager.",
     tags: ["C#", "BepInEx 5 Mono", "Harmony"],
     metrics: [
-      { value: "11,165", label: "unique DLs" },
+      { value: "11,165", label: "unique downloads" },
       { value: "177", label: "endorsements" },
     ],
     links: [
@@ -369,14 +369,14 @@ export const projects: Project[] = [
   {
     id: "nexus-suite",
     personas: ["mods"],
-    title: "Nexus suite — therealskybro",
+    title: "Nexus suite, therealskybro",
     kicker: "Tainted Grail: FoA · BepInEx 5 Mono + Harmony",
     summary:
       "About 16 published mods, ~50.8k unique downloads across the account. FoA catalog ships from a private TaintedGrailModWorkspace. Same C# / BepInEx 5 Mono / Harmony toolchain.",
     tags: ["C#", "BepInEx 5 Mono", "Harmony", "Git"],
     metrics: [
       { value: "~16", label: "mods" },
-      { value: "~50.8k", label: "unique DLs" },
+      { value: "~50.8k", label: "unique downloads" },
     ],
     links: [
       { label: "Nexus profile", href: profile.links.nexus },
@@ -386,10 +386,10 @@ export const projects: Project[] = [
   {
     id: "thunderstore",
     personas: ["mods"],
-    title: "V Rising — Thunderstore team Skies",
+    title: "V Rising, Thunderstore team Skies",
     kicker: "Server + client BepInEx mods",
     summary:
-      "Maintained and updated community mods through Gloomrot / 1.0 / Oakveil. BloodRefill (feed-kill blood rules), ResourceStashWithdrawal (middle-click recipe pulls from stash + tooltip counts), PotionsHaveContainers (empty flasks come back), VComforts (QoL pack). Source lives across skythebro/VMods and per-mod repos.",
+      "Maintained and updated community mods through Gloomrot, 1.0, and Oakveil. BloodRefill (feed-kill blood rules), ResourceStashWithdrawal (middle-click recipe pulls from the stash, with tooltip counts), PotionsHaveContainers (empty flasks come back), and VComforts (a quality-of-life pack). Source lives in skythebro/VMods and in per-mod repos.",
     tags: ["C#", "BepInEx", "V Rising"],
     metrics: [
       { value: "~11k", label: "Stash Withdrawal" },
@@ -409,7 +409,7 @@ export const projects: Project[] = [
     title: "Icarus Workshop",
     kicker: "Desktop + server agent · PySide6 · v1.5.3",
     summary:
-      "Windows mod manager for Icarus: merge EXMOD packs, edit, pull the community database, share profiles, stage UE4SS. Optional IMM Server Agent on a dedicated box. GitHub Actions ships onedir zips; source stays private, releases are public.",
+      "Windows mod manager for Icarus: merge EXMOD packs, edit them, pull the community database, share profiles, and stage UE4SS. Optional IMM Server Agent on a dedicated machine. GitHub Actions ships one-directory zips. Source stays private, and releases are public.",
     tags: ["Python", "PySide6", "GitHub Actions"],
     metrics: [{ value: "1.5.3", label: "latest release" }],
     links: [
@@ -426,12 +426,12 @@ export const projects: Project[] = [
     title: "AvalonCoop / tgfoa-multiplayer",
     kicker: "Unofficial FoA co-op · SkyKDG · listen-server",
     summary:
-      "Unofficial co-op for Tainted Grail: FoA (Unity). C# BepInEx + HarmonyX listen-server: the host authors world state; guests are clients. Modular net — LiteNetLib LAN/loopback now (swappable ITransport); SteamNetworkingSockets / P2P / lobbies planned Phase 2.",
+      "Unofficial co-op for Tainted Grail: FoA (Unity). C# BepInEx and HarmonyX listen-server: the host authors world state, and guests are clients. Modular networking. LiteNetLib handles LAN and loopback for now (swappable ITransport). SteamNetworkingSockets, P2P, and lobbies are planned for Phase 2.",
     highlights: [
-      "Scene-free harness: connect → authority → remote avatar @ 20 Hz → local-only input → anim relay.",
-      "Route steps 0–5 Proven. Next: host-auth combat hits, then inventory, NPC/world, Steam, playable vertical slice.",
-      "Host/Join lobby + MP-tagged saves. Remotes are TPP ghost views, not a second Hero.",
-      "Per-player flavor dialogue vs host-auth quest talks.",
+      "Scene-free harness: connect, then authority, a remote avatar at 20 Hz, local-only input, and an animation relay.",
+      "Route steps 0-5 are proven. Next: host-auth combat hits, then inventory, NPC and world, Steam, and a playable vertical slice.",
+      "Host and Join lobby, plus multiplayer-tagged saves. Remote players are third-person ghost views, not a second Hero.",
+      "Per-player flavor dialogue, separate from host-authoritative quest dialogue.",
     ],
     tags: ["C#", "BepInEx", "HarmonyX", "LiteNetLib", "Unity"],
     links: [
@@ -448,7 +448,7 @@ export const projects: Project[] = [
     title: "Active C# workspaces",
     kicker: "TaintedGrailModWorkspace (private) · BigAmbitionsWorkspace",
     summary:
-      "Confirmed FoA Nexus mods ship from a private TaintedGrailModWorkspace (BepInEx 5 Mono + Harmony), including Appearance Mirror 313 and Interior Bonfire 314. Unpublished scaffolding — not claimed live: AvalonComfort, AvalonUtilitySpells. BigAmbitionsWorkspace is the other C# bench.",
+      "Confirmed FoA Nexus mods ship from a private TaintedGrailModWorkspace (BepInEx 5 Mono and Harmony), including Appearance Mirror 313 and Interior Bonfire 314. Unpublished scaffolding, not claimed as live: AvalonComfort and AvalonUtilitySpells. BigAmbitionsWorkspace is the other C# bench.",
     tags: ["C#", "BepInEx 5 Mono", "Harmony"],
     links: [
       { label: "Nexus therealskybro", href: profile.links.nexus },
@@ -474,10 +474,10 @@ export const projects: Project[] = [
   {
     id: "st-maria",
     personas: ["ui"],
-    title: "Graphic & web design training",
+    title: "Graphic and web design training",
     kicker: "St-Maria · 2020–2021",
     summary:
-      "One year of graphic design and web design before the informatics bachelor. Layout, type, and interface structure — the reason Better UI and Workshop look like products, not debug overlays.",
+      "One year of graphic design and web design, just before the Bachelor Toegepaste Informatica. Layout, type, and interface structure. That is why Better UI and Workshop look like products, not debug overlays.",
     tags: ["Graphic design", "Web design"],
     links: [],
     status: "shipped",
@@ -515,12 +515,12 @@ export const stackDomains = [
   {
     id: "tooling",
     title: "Tooling",
-    items: ["Git", "Docker (basis)", "CI (GitHub Actions)"],
+    items: ["Git", "Docker (basics)", "CI (GitHub Actions)"],
   },
   {
     id: "infra",
     title: "Infra (secondary)",
-    items: ["Windows / AD basics", "Networking"],
+    items: ["Windows and AD basics", "Networking"],
     note: "Present, not the lead.",
   },
 ] as const;
@@ -548,36 +548,36 @@ export const timeline: TimelineItem[] = [
     when: "2026",
     title: "FoA Nexus catalog",
     detail:
-      "Confirmed Nexus: AMM 90, Wyrd Sight 94, Better Mounts 101, Better Movement 102 (11,165 unique / 177 endorsements, scrape ~30 Aug 2026), Better UI 111, Avalon Atlas 265, Appearance Mirror 313, Interior Bonfire 314.",
+      "Confirmed on Nexus: AMM 90, Wyrd Sight 94, Better Mounts 101, Better Movement 102 (11,165 unique downloads and 177 endorsements, as of ~30 Aug 2026), Better UI 111, Avalon Atlas 265, Appearance Mirror 313, and Interior Bonfire 314.",
   },
   {
     id: "steinweg-job",
     kind: "job",
     when: "2026-02 → 2026-07",
-    title: "Junior IT — C. Steinweg Belgium NV",
+    title: "Junior IT, C. Steinweg Belgium NV",
     detail:
-      "C# / VBA / Power Query on logistics data. AD, GPO, RDSH, Meraki, Zscaler as supporting ops.",
+      "C#, VBA, and Power Query on logistics data. AD, GPO, RDSH, Meraki, and Zscaler were supporting work.",
   },
   {
     id: "kdg-grad",
     kind: "edu",
     when: "2021–2025",
-    title: "KdG — Bachelor Toegepaste Informatica",
+    title: "KdG - Bachelor Toegepaste Informatica",
     detail:
-      "Applicatieontwikkeling. Graduated with distinction (onderscheiding).",
+      "Applicatieontwikkeling (Application Development). Graduated with distinction.",
   },
   {
     id: "apvine-job",
     kind: "job",
     when: "2025-03 → 2025-06",
-    title: "Internship — Apvine",
+    title: "Internship at Apvine",
     detail: "Functional analysis, Agile, Java/Mendix document automation.",
   },
   {
     id: "vrising",
     kind: "release",
     when: "2023–2025",
-    title: "V Rising — team Skies",
+    title: "V Rising, team Skies",
     detail:
       "Thunderstore updates through Gloomrot and 1.0. BloodRefill, stash withdrawal, potions, VComforts.",
   },
@@ -585,15 +585,15 @@ export const timeline: TimelineItem[] = [
     id: "st-maria-edu",
     kind: "edu",
     when: "2020–2021",
-    title: "St-Maria — Graphic Design & Web Design",
-    detail: "Visual and interface training immediately before the bachelor.",
+    title: "St-Maria - Graphic Design and Web Design",
+    detail: "Visual and interface training immediately before the bachelor's degree.",
   },
   {
     id: "mater",
     kind: "edu",
     when: "2020",
-    title: "Mater Salvatoris — Ondernemen en IT",
-    detail: "Secondary-track ondernemen & IT.",
+    title: "Mater Salvatoris - Ondernemen en IT",
+    detail: "Secondary-school track in entrepreneurship and IT.",
   },
 ];
 
@@ -610,16 +610,16 @@ export const personas: {
   {
     id: "systems",
     label: "Systems & Full-Stack",
-    hint: "Listen-server, integrations, backends",
+    hint: "Listen-server, integrations, and backends",
   },
   {
     id: "mods",
-    label: "Mods, Tools & RE",
-    hint: "BepInEx, desktop tooling, live users",
+    label: "Mods, Tools & Reverse Engineering",
+    hint: "BepInEx, desktop tooling, and live users",
   },
   {
     id: "ui",
     label: "UI & Product Design",
-    hint: "Better UI, AMM, Atlas. With shots",
+    hint: "Better UI, AMM, and Atlas, with screenshots",
   },
 ];

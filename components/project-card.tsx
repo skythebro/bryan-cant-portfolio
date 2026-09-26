@@ -145,7 +145,7 @@ export function ProjectCard({
         </div>
       ) : (
         <p className="mt-4 border-t border-border pt-4 text-sm text-muted-foreground">
-          No public repo verified. Link omitted.
+          No verified public repo, so no link here.
         </p>
       )}
     </motion.article>

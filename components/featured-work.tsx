@@ -66,8 +66,8 @@ export function FeaturedWork() {
   return (
     <section id="work" className="relative z-0 scroll-mt-20">
       <SectionHeading eyebrow="Featured work" title="Three desks, one person">
-        Enterprise integrations, shipped mods with users, and product UI.
-        Better UI, Avalon Mod Manager, and Avalon Atlas carry Nexus gallery
+        Enterprise integrations, shipped mods with real users, and product UI.
+        Better UI, Avalon Mod Manager, and Avalon Atlas include Nexus gallery
         shots. Same engineer.
       </SectionHeading>
 
