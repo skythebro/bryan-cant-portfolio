@@ -7,7 +7,6 @@ import {
   Linkedin,
   Mail,
   MapPin,
-  Phone,
   Puzzle,
 } from "lucide-react";
 import { Portrait } from "@/components/portrait";
@@ -20,7 +19,6 @@ const social = [
   { href: profile.links.kofi, label: "Ko-fi", icon: Coffee },
   { href: profile.links.linkedin, label: "LinkedIn", icon: Linkedin },
   { href: `mailto:${profile.email}`, label: "Email", icon: Mail },
-  { href: profile.phoneHref, label: "Call", icon: Phone },
 ] as const;
 
 const [downloads, ...otherProof] = proofStrip;
@@ -104,8 +102,8 @@ export function IdentityRail() {
             render={
               <a
                 href={href}
-                target={href.startsWith("tel:") ? undefined : "_blank"}
-                rel={href.startsWith("tel:") ? undefined : "noreferrer"}
+                target="_blank"
+                rel="noreferrer"
                 aria-label={label}
               />
             }
