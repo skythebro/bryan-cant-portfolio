@@ -39,6 +39,7 @@ export const heroTags = [
   "React",
   ".NET",
   "Python",
+  "Rust",
   "BepInEx",
   "PySide6",
 ] as const;
@@ -384,6 +385,28 @@ export const projects: Project[] = [
     status: "shipped",
   },
   {
+    id: "nms-rs",
+    personas: ["mods"],
+    title: "NMS.rs - Quality of Life Pack",
+    kicker: "No Man's Sky · Rust · released October 2026 · v4.0.1",
+    summary:
+      "Rust mod loader and quality-of-life mods for No Man's Sky. A small proxy DLL loads the mods when the game starts, so there is no injector and, on Windows, no Steam launch option. The manager (nms-rs.exe) installs, updates, and parks the mods, rebuilds inventory sizes, and merges UI scripts with other people's AMUMSS mods. Every behavior change is a live switch on the in-game Mods page (Options, then Mods). Patches are found by a unique byte signature and stay off if a game update moved that code, leaving that part vanilla. Targets game build 181442.",
+    tags: ["Rust", "No Man's Sky", "Mod loader"],
+    links: [
+      { label: "GitHub", href: "https://github.com/skythebro/NMS.rs" },
+      {
+        label: "Release v4.0.1",
+        href: "https://github.com/skythebro/NMS.rs/releases/tag/v4.0.1",
+      },
+      {
+        label: "Nexus 4600",
+        href: "https://www.nexusmods.com/nomanssky/mods/4600",
+      },
+    ],
+    status: "shipped",
+    priority: 35,
+  },
+  {
     id: "thunderstore",
     personas: ["mods"],
     title: "V Rising, Thunderstore team Skies",
@@ -424,9 +447,10 @@ export const projects: Project[] = [
     id: "avalon-coop",
     personas: ["systems", "mods"],
     title: "AvalonCoop / tgfoa-multiplayer",
-    kicker: "Unofficial FoA co-op · SkyKDG · listen-server",
+    kicker:
+      "Actively in development · unofficial FoA co-op · SkyKDG · listen-server",
     summary:
-      "Unofficial co-op for Tainted Grail: FoA (Unity). C# BepInEx and HarmonyX listen-server: the host authors world state, and guests are clients. Modular networking. LiteNetLib handles LAN and loopback for now (swappable ITransport). SteamNetworkingSockets, P2P, and lobbies are planned for Phase 2.",
+      "AvalonCoop is actively in development: an ongoing unofficial co-op for Tainted Grail: Fall of Avalon (Unity). C# BepInEx and HarmonyX listen-server: the host authors world state, and guests are clients. Modular networking. LiteNetLib handles LAN and loopback for now (swappable ITransport). SteamNetworkingSockets, P2P, and lobbies are planned for Phase 2.",
     highlights: [
       "Scene-free harness: connect, then authority, a remote avatar at 20 Hz, local-only input, and an animation relay.",
       "Route steps 0-5 are proven. Next: host-auth combat hits, then inventory, NPC and world, Steam, and a playable vertical slice.",
@@ -454,6 +478,17 @@ export const projects: Project[] = [
       { label: "Nexus therealskybro", href: profile.links.nexus },
     ],
     status: "wip",
+  },
+  {
+    id: "hytale-mods",
+    personas: ["mods"],
+    title: "Hytale mods",
+    kicker: "In development",
+    summary: "A few Hytale mods in development.",
+    tags: ["Hytale"],
+    links: [],
+    status: "wip",
+    priority: 8,
   },
   {
     id: "care-ui",
@@ -488,7 +523,7 @@ export const stackDomains = [
   {
     id: "languages",
     title: "Languages",
-    items: ["C#", "Java", "TypeScript / JavaScript", "Python", "SQL"],
+    items: ["C#", "Java", "TypeScript / JavaScript", "Python", "Rust", "SQL"],
   },
   {
     id: "frontend",
@@ -534,6 +569,14 @@ export type TimelineItem = {
 };
 
 export const timeline: TimelineItem[] = [
+  {
+    id: "nms-rs-401",
+    kind: "release",
+    when: "2026-10",
+    title: "NMS.rs 4.0.1",
+    detail:
+      "Quality of Life Pack for No Man's Sky. Rust mod loader and QoL mods, with a manager (nms-rs.exe) and live in-game switches. Public repo and GitHub release.",
+  },
   {
     id: "workshop-153",
     kind: "release",
@@ -615,7 +658,7 @@ export const personas: {
   {
     id: "mods",
     label: "Mods, Tools & Reverse Engineering",
-    hint: "BepInEx, desktop tooling, and live users",
+    hint: "BepInEx, Rust, desktop tooling, and live users",
   },
   {
     id: "ui",
