@@ -1,153 +1,78 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import type { Project } from "@/lib/content";
-import { Badge } from "@/components/ui/badge";
-import { ProjectShots } from "@/components/project-shots";
+import { assetPath } from "@/lib/paths";
+import { ShotGallery } from "@/components/shot-gallery";
 
-function kickerLine(kicker: string) {
-  return kicker
-    .split("·")
-    .map((part) => part.trim())
-    .filter(Boolean)
-    .join(" · ");
+function Cover({ project }: { project: Project }) {
+  if (project.shots?.length) {
+    return <ShotGallery shots={project.shots} title={project.title} />;
+  }
+
+  // Projects without screenshots get a plain panel with their logo or name.
+  return (
+    <div className="flex aspect-[16/10] items-center justify-center bg-[radial-gradient(ellipse_at_top,oklch(0.32_0.05_70),oklch(0.2_0.01_60))]">
+      {project.logo ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={assetPath(project.logo)}
+          alt=""
+          width={256}
+          height={256}
+          className="size-28 drop-shadow-xl"
+        />
+      ) : (
+        <span className="px-6 text-center text-3xl font-semibold tracking-tight text-foreground/90">
+          {project.title}
+        </span>
+      )}
+    </div>
+  );
 }
 
-export function ProjectCard({
-  project,
-  index,
-  lead = false,
-}: {
-  project: Project;
-  index: number;
-  lead?: boolean;
-}) {
-  const meta = kickerLine(project.kicker);
-
+export function ProjectCard({ project }: { project: Project }) {
   return (
-    <motion.article
-      layout
-      initial={false}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: 6 }}
-      transition={{
-        duration: 0.28,
-        delay: index * 0.03,
-        ease: [0.22, 1, 0.36, 1],
-      }}
-      className={`panel flex h-full min-w-0 flex-col ${
-        lead ? "p-6 sm:p-8" : "p-5"
-      }`}
-    >
-      <header className="flex min-w-0 items-start justify-between gap-3">
-        <h3
-          className={`relative z-10 min-w-0 flex-1 text-pretty font-semibold tracking-tight ${
-            lead ? "text-2xl sm:text-3xl" : "text-lg"
-          }`}
-        >
+    <article className="flex flex-col overflow-hidden rounded-xl border border-border bg-card">
+      <Cover project={project} />
+      <div className="flex flex-1 flex-col p-5 sm:p-6">
+        <p className="text-sm text-primary">{project.context}</p>
+        <h3 className="mt-1 text-xl font-semibold tracking-tight">
           {project.title}
         </h3>
-        <div className="relative z-10 flex shrink-0 flex-wrap justify-end gap-1.5">
-          {project.badge ? (
-            <Badge
-              variant="outline"
-              className="rounded-full border-primary/30 bg-primary/10 text-primary"
-            >
-              {project.badge}
-            </Badge>
-          ) : null}
-          {project.status === "wip" ? (
-            <Badge variant="outline" className="rounded-full">
-              WIP
-            </Badge>
-          ) : null}
-        </div>
-      </header>
-
-      {meta ? (
-        <p className="relative z-10 mt-2 text-sm text-muted-foreground">
-          {meta}
+        <p className="mt-3 leading-relaxed text-muted-foreground">
+          {project.description}
         </p>
-      ) : null}
-
-      <div className="flex min-h-0 flex-1 flex-col">
-        <p
-          className={`relative z-10 max-w-3xl text-[15px] leading-relaxed text-muted-foreground ${
-            lead ? "mt-4" : "mt-3"
-          }`}
-        >
-          {project.summary}
-        </p>
-
-        {project.highlights && project.highlights.length > 0 ? (
-          <ul className={`space-y-2 ${lead ? "mt-5" : "mt-3"}`}>
-            {project.highlights.map((item) => (
+        {project.numbers ? (
+          <p className="mt-4 text-sm font-medium text-foreground/90">
+            {project.numbers}
+          </p>
+        ) : null}
+        <div className="mt-auto flex flex-wrap items-end justify-between gap-x-4 gap-y-3 pt-5">
+          <ul className="flex flex-wrap gap-1.5" aria-label="Built with">
+            {project.stack.map((item) => (
               <li
                 key={item}
-                className="relative pl-3.5 text-sm leading-relaxed text-foreground/88 before:absolute before:left-0 before:top-[0.55em] before:size-1.5 before:rounded-full before:bg-primary/80"
+                className="rounded-md bg-muted px-2 py-0.5 text-xs text-muted-foreground"
               >
                 {item}
               </li>
             ))}
           </ul>
-        ) : null}
-
-        {project.shots && project.shots.length > 0 ? (
-          <ProjectShots
-            shots={project.shots}
-            title={project.title}
-            featured={lead}
-          />
-        ) : null}
-
-        {project.metrics && project.metrics.length > 0 ? (
-          <ul className="mt-4 flex flex-wrap gap-2">
-            {project.metrics.map((metric) => (
-              <li
-                key={`${metric.value}-${metric.label}`}
-                className="rounded-full border border-primary/20 bg-primary/10 px-2.5 py-1"
-              >
-                <span className="text-sm font-semibold text-primary">
-                  {metric.value}
-                </span>
-                <span className="ml-1.5 text-xs text-muted-foreground">
-                  {metric.label}
-                </span>
-              </li>
-            ))}
-          </ul>
-        ) : null}
-      </div>
-
-      <ul className="mt-4 flex flex-wrap gap-1.5">
-        {project.tags.map((tag) => (
-          <li key={tag} className="chip">
-            {tag}
-          </li>
-        ))}
-      </ul>
-
-      {project.links.length > 0 ? (
-        <div className="mt-4 flex flex-wrap gap-3 border-t border-border pt-4">
-          {project.links.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-1 text-sm text-primary underline-offset-4 transition-transform hover:underline hover:translate-x-0.5"
-            >
-              {link.label}
-              <ArrowUpRight className="size-3.5" aria-hidden />
-            </a>
-          ))}
+          {project.links.length ? (
+            <div className="flex gap-4 text-sm">
+              {project.links.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="inline-flex items-center gap-0.5 font-medium text-primary hover:underline"
+                >
+                  {link.label}
+                  <ArrowUpRight className="size-3.5" />
+                </a>
+              ))}
+            </div>
+          ) : null}
         </div>
-      ) : (
-        <p className="mt-4 border-t border-border pt-4 text-sm text-muted-foreground">
-          No verified public repo, so no link here.
-        </p>
-      )}
-    </motion.article>
+      </div>
+    </article>
   );
 }

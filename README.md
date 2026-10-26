@@ -1,6 +1,6 @@
 # Bryan Cant, portfolio
 
-Static personal site for **Bryan Cant** (Sky / SkyBreeze), junior software engineer in Belgium · Antwerp. Next.js App Router, TypeScript, Tailwind CSS, `output: 'export'`. No backend, no paid services.
+Static personal site for **Bryan Cant** (Sky / SkyBreeze), junior software developer in Antwerp, Belgium. Next.js App Router, TypeScript, Tailwind CSS, `output: 'export'`. No backend, no paid services.
 
 ## Run locally
 
@@ -18,11 +18,9 @@ npm run lint
 
 ## Design
 
-Tokens (color, type, motion) live in [DESIGN.md](./DESIGN.md). Content is factual only. See `lib/content.ts`. Metrics marked `~` come from Bryan’s brief (Nexus unique downloads / Thunderstore). Links that could not be verified are omitted, not invented.
+Layout, colours and writing style are in [DESIGN.md](./DESIGN.md). All text and numbers live in `lib/content.ts`.
 
-Portrait: `public/skythebro.png` is the public skythebro avatar (GitHub-style character), not the CV photo.
-
-FoA gallery shots live in `public/foa/` (Nexus images from therealskybro). Featured UI cards (Better UI, Avalon Mod Manager, and Avalon Atlas), plus Wyrd Sight, Better Mounts, and Better Movement, open them in a lightbox. Better UI ships rarity-color inventory and potion subcategory shots; AMM ships the Options → MODS list plus the native setting tooltip.
+Portrait: `public/skythebro.png` is the public skythebro avatar. Mod screenshots live in `public/foa/` (from my Nexus pages).
 
 ## Deploy: Cloudflare Pages (simplest)
 
@@ -63,5 +61,5 @@ NEXT_PUBLIC_BASE_PATH=/your-repo-name npm run build
 
 - Next.js 16 (App Router) + React 19
 - Tailwind CSS 4 + shadcn/ui
-- Framer Motion, Lucide
+- Lucide icons
 - Static HTML in `out/`

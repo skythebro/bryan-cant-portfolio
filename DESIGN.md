@@ -1,42 +1,38 @@
-# Design tokens
+# Design
 
-Personal studio, not a terminal or Linear workbench. Dark and warm. One honey accent.
+One readable page, top to bottom. Dark, mostly neutral, one amber accent.
+
+## Page order
+
+1. Hero: avatar, short intro, contact buttons, three headline numbers
+2. Things I've made: project cards in two columns, screenshot on top
+3. What I'm working on now
+4. Smaller projects: one line each
+5. Experience
+6. What I work with
+7. Get in touch
+
+All copy lives in `lib/content.ts`. Write it the way you'd say it to someone: first person, plain words, no buzzwords. Download numbers are Nexus "unique DLs" and get rechecked whenever `statsDate` changes.
 
 ## Color
 
 | Token | Value | Use |
 | --- | --- | --- |
-| `--background` | `oklch(0.2 0.018 55)` | Page |
-| `--card` | `oklch(0.255 0.02 52)` | Panels |
-| `--foreground` | `oklch(0.96 0.014 80)` | Body |
-| `--muted-foreground` | `oklch(0.76 0.03 65)` | Secondary copy |
-| `--border` | `oklch(0.9 0.03 70 / 14%)` | Soft edges |
-| `--primary` | `oklch(0.82 0.11 72)` | Accent: links, metrics, live badge |
-| `--primary-foreground` | `oklch(0.24 0.03 55)` | Text on accent |
-| `--radius` | `1rem` | Rounded cards and chips |
-
-Page wash is two warm radial glows. No blueprint grid.
+| `--background` | `oklch(0.165 0.006 60)` | Page |
+| `--card` | `oklch(0.2 0.008 60)` | Project cards |
+| `--muted` | `oklch(0.255 0.008 60)` | Tags, hovers |
+| `--foreground` | `oklch(0.96 0.008 80)` | Body |
+| `--muted-foreground` | `oklch(0.74 0.012 70)` | Secondary text |
+| `--border` | `oklch(0.9 0.01 70 / 11%)` | Dividers and card edges |
+| `--primary` | `oklch(0.82 0.13 75)` | Links, numbers, the email button |
 
 ## Type
 
-| Role | Family | Notes |
-| --- | --- | --- |
-| UI / headings | Outfit | `--font-outfit` |
-| Rare code-ish leftovers | Geist Mono | Avoid uppercase tracking banners |
+Geist for everything. Body text is 16px with relaxed line height; text blocks stay under ~70 characters wide (`max-w-2xl`).
 
-Body ~15px. Give cards air. Section labels are sentence case (`.label`), not `01 FEATURED ENGINEERING`.
+## Screenshots
 
-## Motion
-
-Framer Motion on the identity rail and project cards. 220–350ms, `[0.22, 1, 0.36, 1]`. Availability pulse on the status dot. `prefers-reduced-motion` disables transitions.
-
-## Layout
-
-Soft sticky header. Compact identity rail (small circular skythebro avatar, bio, unique downloads) sits below the header. Main column is featured work, stack, timeline, then contact with the footer attached.
-
-Featured UI cards show a Nexus gallery (`public/foa/`). Click opens a lightbox (Esc / arrows). Captions sit under the shot so they never cover a heading.
-
-Project titles are the card heading. Meta stays a quiet line under the title. No watermark text behind or across titles. Non-featured cards pack by media first. Cards in a row stretch to equal height so short entries do not leave empty gaps beside taller neighbors.
+Card covers come from `public/foa/` (16:10, cropped). Clicking a cover opens all of that project's shots in a lightbox (Esc, arrow keys, swipe). Projects without screenshots show their logo or name on a plain panel.
 
 ## Icons
 

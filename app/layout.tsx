@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Geist_Mono, Outfit } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import { profile } from "@/lib/content";
 import { assetPath } from "@/lib/paths";
 import "./globals.css";
 
-const outfit = Outfit({
-  variable: "--font-outfit",
+const geist = Geist({
+  variable: "--font-geist",
   subsets: ["latin"],
   display: "swap",
 });
@@ -16,9 +16,9 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
-const title = `${profile.name}, junior software engineer`;
+const title = `${profile.name}, junior software developer`;
 const description =
-  "Belgium · Antwerp. Available immediately for junior software, full-stack, Java, .NET, or React. C# automation, shipped game UIs, and desktop tooling.";
+  "Junior developer from Antwerp, Belgium. C#, .NET, Java, TypeScript and Rust. I make game mods and tools used by thousands of players.";
 
 export const metadata: Metadata = {
   title,
@@ -56,10 +56,9 @@ const personJsonLd = {
   url: profile.links.github,
   sameAs: [
     profile.links.github,
-    profile.links.githubSchool,
+    profile.links.githubSecond,
     profile.links.linkedin,
     profile.links.nexus,
-    profile.links.nexusNext,
     profile.links.thunderstore,
     profile.links.kofi,
   ],
@@ -70,7 +69,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`dark ${outfit.variable} ${geistMono.variable} h-full`}
+      className={`dark ${geist.variable} ${geistMono.variable} h-full`}
     >
       <head>
         <script
