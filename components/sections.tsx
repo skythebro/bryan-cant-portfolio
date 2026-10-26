@@ -60,25 +60,32 @@ export function Work() {
 export function InProgress() {
   return (
     <Section title="What I'm working on now">
-      <article className="rounded-xl border border-primary/30 bg-primary/5 p-5 sm:p-6">
-        <p className="text-sm text-primary">{inProgress.context}</p>
-        <h3 className="mt-1 text-xl font-semibold tracking-tight">
-          {inProgress.title}
-        </h3>
-        <p className="mt-3 max-w-3xl leading-relaxed text-muted-foreground">
-          {inProgress.description}
-        </p>
-        <ul className="mt-5 flex flex-wrap gap-1.5">
-          {inProgress.stack.map((item) => (
-            <li
-              key={item}
-              className="rounded-md bg-muted px-2 py-0.5 text-xs text-muted-foreground"
-            >
-              {item}
-            </li>
-          ))}
-        </ul>
-      </article>
+      <div className="grid gap-6 md:grid-cols-3">
+        {inProgress.map((project) => (
+          <article
+            key={project.id}
+            className="flex flex-col rounded-xl border border-primary/30 bg-primary/5 p-5 sm:p-6"
+          >
+            <p className="text-sm text-primary">{project.context}</p>
+            <h3 className="mt-1 text-xl font-semibold tracking-tight">
+              {project.title}
+            </h3>
+            <p className="mt-3 leading-relaxed text-muted-foreground">
+              {project.description}
+            </p>
+            <ul className="mt-auto flex flex-wrap gap-1.5 pt-5">
+              {project.stack.map((item) => (
+                <li
+                  key={item}
+                  className="rounded-md bg-muted px-2 py-0.5 text-xs text-muted-foreground"
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
     </Section>
   );
 }

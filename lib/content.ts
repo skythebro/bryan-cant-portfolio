@@ -268,15 +268,36 @@ export const featured: Project[] = [
   },
 ];
 
-export const inProgress: Project = {
-  id: "avalon-coop",
-  title: "AvalonCoop",
-  context: "Tainted Grail: Fall of Avalon",
-  description:
-    "Unofficial online co-op for a game that was only made for one player. The host runs the world and other players join as clients. Connecting, syncing players and animations already work. Next up are combat, inventories and NPCs, and after that Steam lobbies.",
-  stack: ["C#", "BepInEx", "HarmonyX", "LiteNetLib", "Networking"],
-  links: [],
-};
+// In priority order. The Hytale mods come first while they're my main focus.
+export const inProgress: Project[] = [
+  {
+    id: "hytale-mounts",
+    title: "Hytale mounts mod",
+    context: "Hytale · private, work in progress",
+    description:
+      "Makes mounts more interesting. Every mount gets its own quirks, you can breed them, and there's a lot more variety between them.",
+    stack: ["Java", "Hytale modding"],
+    links: [],
+  },
+  {
+    id: "hytale-nemesis",
+    title: "Hytale nemesis system",
+    context: "Hytale · private, work in progress",
+    description:
+      "A nemesis system for the Hytale world, in the style of Shadow of War. You fight NPCs the way you do in that game, or other players if you're up for PvP.",
+    stack: ["Java", "Hytale modding"],
+    links: [],
+  },
+  {
+    id: "avalon-coop",
+    title: "AvalonCoop",
+    context: "Tainted Grail: Fall of Avalon",
+    description:
+      "Unofficial online co-op for a game that was only made for one player. The host runs the world and other players join as clients. Connecting, syncing players and animations already work. Next up are combat, inventories and NPCs, and after that Steam lobbies.",
+    stack: ["C#", "BepInEx", "HarmonyX", "LiteNetLib", "Networking"],
+    links: [],
+  },
+];
 
 export type SmallProject = {
   title: string;
