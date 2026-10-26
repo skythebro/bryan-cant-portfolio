@@ -51,7 +51,6 @@ export type Project = {
   numbers?: string;
   links: Link[];
   shots?: Shot[];
-  logo?: string;
 };
 
 export const featured: Project[] = [
@@ -116,7 +115,18 @@ export const featured: Project[] = [
       { label: "GitHub", href: "https://github.com/skythebro/NMS.rs" },
       { label: "Nexus", href: "https://www.nexusmods.com/nomanssky/mods/4600" },
     ],
-    logo: "/nms-rs.png",
+    shots: [
+      {
+        src: "/shots/nmsrs-manager.jpg",
+        alt: "The NMS.rs manager app with a list of mods, each with an on/off switch",
+        caption: "The manager app",
+      },
+      {
+        src: "/shots/nmsrs-ingame-settings.jpg",
+        alt: "The Mods page in No Man's Sky's options menu with settings for Picker Tweaks and Refiner Guard",
+        caption: "Every mod has its own settings in game",
+      },
+    ],
   },
   {
     id: "wyrd-sight",
@@ -182,6 +192,13 @@ export const featured: Project[] = [
       },
       { label: "Nexus", href: "https://www.nexusmods.com/icarus/mods/304" },
     ],
+    shots: [
+      {
+        src: "/shots/workshop-downloads.jpg",
+        alt: "Icarus Workshop's download page, a searchable list of community mods with version and status columns",
+        caption: "Browsing and downloading mods",
+      },
+    ],
   },
   {
     id: "avalon-atlas",
@@ -229,6 +246,23 @@ export const featured: Project[] = [
         src: "/foa/mounts-101-inventory-mount-menu.jpg",
         alt: "A white horse with a menu to pet, rename or stable it",
         caption: "Interacting with your horse",
+      },
+    ],
+  },
+  {
+    id: "take-home",
+    title: "Take Home",
+    context: "Icarus",
+    description:
+      "Normally Icarus only lets you bring workshop items back to the space station and deletes everything else. With this you can take tools, resources, food or gear home too, either when you leave a mission or through the exotic delivery pod. You pick which kinds of items come along.",
+    stack: ["Game data modding"],
+    numbers: "320 unique downloads · 5 endorsements",
+    links: [{ label: "Nexus", href: "https://www.nexusmods.com/icarus/mods/306" }],
+    shots: [
+      {
+        src: "/shots/takehome-delivery-pod.jpg",
+        alt: "The exotic delivery pod screen with crafted items and tools loaded as cargo",
+        caption: "Sending crafted items home in the delivery pod",
       },
     ],
   },
@@ -291,13 +325,6 @@ export const smaller: SmallProject[] = [
     description:
       "Lets local mods load on copies of the game where Steam Workshop doesn't run.",
     href: "https://www.nexusmods.com/bigambitions/mods/23",
-  },
-  {
-    title: "Take Home",
-    context: "Icarus",
-    description:
-      "Bring items you crafted or gathered back to the space station when you leave a mission.",
-    href: "https://www.nexusmods.com/icarus/mods/306",
   },
 ];
 

@@ -1,6 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
 import type { Project } from "@/lib/content";
-import { assetPath } from "@/lib/paths";
 import { ShotGallery } from "@/components/shot-gallery";
 
 function Cover({ project }: { project: Project }) {
@@ -8,31 +7,34 @@ function Cover({ project }: { project: Project }) {
     return <ShotGallery shots={project.shots} title={project.title} />;
   }
 
-  // Projects without screenshots get a plain panel with their logo or name.
+  // Projects without screenshots get a plain panel with their name.
   return (
     <div className="flex aspect-[16/10] items-center justify-center bg-[radial-gradient(ellipse_at_top,oklch(0.32_0.05_70),oklch(0.2_0.01_60))]">
-      {project.logo ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={assetPath(project.logo)}
-          alt=""
-          width={256}
-          height={256}
-          className="size-28 drop-shadow-xl"
-        />
-      ) : (
-        <span className="px-6 text-center text-3xl font-semibold tracking-tight text-foreground/90">
-          {project.title}
-        </span>
-      )}
+      <span className="px-6 text-center text-3xl font-semibold tracking-tight text-foreground/90">
+        {project.title}
+      </span>
     </div>
   );
 }
 
-export function ProjectCard({ project }: { project: Project }) {
+// `wide` spans both grid columns with the screenshot beside the text, so an odd
+// last card doesn't leave a gap.
+export function ProjectCard({
+  project,
+  wide,
+}: {
+  project: Project;
+  wide?: boolean;
+}) {
   return (
-    <article className="flex flex-col overflow-hidden rounded-xl border border-border bg-card">
-      <Cover project={project} />
+    <article
+      className={`flex flex-col overflow-hidden rounded-xl border border-border bg-card ${
+        wide ? "md:col-span-2 md:grid md:grid-cols-2" : ""
+      }`}
+    >
+      <div className={wide ? "md:self-center" : undefined}>
+        <Cover project={project} />
+      </div>
       <div className="flex flex-1 flex-col p-5 sm:p-6">
         <p className="text-sm text-primary">{project.context}</p>
         <h3 className="mt-1 text-xl font-semibold tracking-tight">

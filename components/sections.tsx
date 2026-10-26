@@ -45,8 +45,12 @@ export function Work() {
       intro={`Mostly mods and tools for games I play. They're the projects where real people use what I build and tell me straight away when something breaks. Download numbers are from ${statsDate}.`}
     >
       <div className="grid gap-6 md:grid-cols-2">
-        {featured.map((project) => (
-          <ProjectCard key={project.id} project={project} />
+        {featured.map((project, index) => (
+          <ProjectCard
+            key={project.id}
+            project={project}
+            wide={featured.length % 2 === 1 && index === featured.length - 1}
+          />
         ))}
       </div>
     </Section>
