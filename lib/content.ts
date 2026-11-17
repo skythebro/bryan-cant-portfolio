@@ -112,6 +112,21 @@ export const featured: Project[] = [
     ],
   },
   {
+    id: "restored-land-coop",
+    title: "Restored Land Co-op",
+    context: "Dying Light: The Beast",
+    description:
+      "Co-op for the game's Restored Land mode, for up to four players. You join a friend the same ways the base game allows: the pause menu, a Steam invite or the public games list. Zombies you kill stay dead for everyone, late joiners included, and cleared areas and the map are shared while loot stays per player. I lost the original code, so version 2 is a full rebuild.",
+    stack: ["Reverse engineering", "Game networking"],
+    numbers: "1.8k unique downloads · 21 endorsements · v2.0.1",
+    links: [
+      {
+        label: "Nexus",
+        href: "https://www.nexusmods.com/dyinglightthebeast/mods/821",
+      },
+    ],
+  },
+  {
     id: "better-movement",
     title: "Better Movement",
     context: "Tainted Grail: Fall of Avalon",
