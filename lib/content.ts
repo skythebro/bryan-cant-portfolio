@@ -1,5 +1,5 @@
-// Numbers last checked on Nexus, Thunderstore and GitHub: 26 Oct 2026.
-export const statsDate = "October 2026";
+// Numbers last checked on Nexus, Thunderstore and GitHub: 17 Nov 2026.
+export const statsDate = "November 2026";
 
 export const profile = {
   name: "Bryan Cant",
@@ -26,8 +26,8 @@ export const profile = {
 } as const;
 
 export const stats = [
-  { value: "57.5k", label: "unique downloads on Nexus" },
-  { value: "30k+", label: "downloads on Thunderstore" },
+  { value: "60.4k", label: "unique downloads on Nexus" },
+  { value: "31k", label: "downloads on Thunderstore" },
   { value: "20+", label: "mods and tools released" },
 ] as const;
 
@@ -61,7 +61,7 @@ export const featured: Project[] = [
     description:
       "Mods for this game keep their settings in config files you have to edit by hand. This adds a Mods tab to the game's own options menu and builds the settings screen for every installed mod automatically. All my other Tainted Grail mods use it.",
     stack: ["C#", "BepInEx", "Harmony", "Unity UI"],
-    numbers: "16.3k unique downloads · 324 endorsements",
+    numbers: "16.8k unique downloads · 338 endorsements",
     links: [
       {
         label: "Nexus",
@@ -82,13 +82,43 @@ export const featured: Project[] = [
     ],
   },
   {
+    id: "nestmates",
+    title: "Nestmates",
+    context: "IRON NEST: Heavy Turret Simulator",
+    description:
+      "Online co-op for a game built for one player. Up to five people crew the same turret over Steam: one calls the bearing on the map, another reloads, someone keeps the diesel going. Every gun, lever, dial and enemy is synced, the host runs the mission, and friends can join a mission that's already going. It's open source.",
+    stack: ["C#", "BepInEx 6", "IL2CPP", "Steam networking"],
+    numbers: "212 unique downloads · v1.0.3 · MIT",
+    links: [
+      { label: "GitHub", href: "https://github.com/skythebro/Nestmates" },
+      { label: "Nexus", href: "https://www.nexusmods.com/ironnest/mods/90" },
+    ],
+    shots: [
+      {
+        src: "/shots/nestmates-crew.jpg",
+        alt: "A crew member at the turret's elevation controls, with their name and station shown above them",
+        caption: "A crewmate at the elevation controls",
+      },
+      {
+        src: "/shots/nestmates-map.jpg",
+        alt: "A crewmate standing at the tactical map table with bearing lines drawn on it",
+        caption: "Calling the bearing on the tactical map",
+      },
+      {
+        src: "/shots/nestmates-lobby.jpg",
+        alt: "The Nestmates lobby window over the game's main menu, showing the lobby code, invite buttons and crew list",
+        caption: "The co-op lobby with Steam invites",
+      },
+    ],
+  },
+  {
     id: "better-movement",
     title: "Better Movement",
     context: "Tainted Grail: Fall of Avalon",
     description:
       "Reworks sprinting, sliding, dashing and jumping so moving around feels less stiff. It comes with a few presets, and every value can be tweaked in game.",
     stack: ["C#", "BepInEx", "Harmony"],
-    numbers: "12.6k unique downloads · 214 endorsements",
+    numbers: "13.1k unique downloads · 223 endorsements",
     links: [
       {
         label: "Nexus",
@@ -110,7 +140,7 @@ export const featured: Project[] = [
     description:
       "A mod loader and a pack of quality-of-life mods, written in Rust. It brings bigger inventory grids, crafting straight from your storage, item search and more. A small manager app installs and updates everything, and each change can be switched on or off in game. I rebuilt it from scratch after the older Python version.",
     stack: ["Rust", "Reverse engineering"],
-    numbers: "Released October 2026 · v4.0.1",
+    numbers: "801 unique downloads · v4.0.6",
     links: [
       { label: "GitHub", href: "https://github.com/skythebro/NMS.rs" },
       { label: "Nexus", href: "https://www.nexusmods.com/nomanssky/mods/4600" },
@@ -135,7 +165,7 @@ export const featured: Project[] = [
     description:
       "Makes loot, containers, plants and ore glow so you stop walking past them. Colours show rarity, and you can set the range and colour for each kind of item.",
     stack: ["C#", "BepInEx", "Harmony"],
-    numbers: "10.5k unique downloads · 194 endorsements",
+    numbers: "10.8k unique downloads · 204 endorsements",
     links: [
       {
         label: "Nexus",
@@ -157,7 +187,7 @@ export const featured: Project[] = [
     description:
       "A bunch of inventory improvements: search, junk marking, rarity colours, clearer tooltips and extra loadout pages. It works with mouse and keyboard as well as a controller.",
     stack: ["C#", "BepInEx", "Harmony", "Unity UI"],
-    numbers: "8.1k unique downloads · 166 endorsements",
+    numbers: "8.4k unique downloads · 170 endorsements",
     links: [
       {
         label: "Nexus",
@@ -207,7 +237,7 @@ export const featured: Project[] = [
     description:
       "A minimap that uses the game's own hand-drawn maps, with fog of war and a top-down view inside buildings. Press F8 to drag the map and the rest of the HUD wherever you want.",
     stack: ["C#", "BepInEx", "Harmony"],
-    numbers: "1k unique downloads · 22 endorsements",
+    numbers: "1.2k unique downloads · 24 endorsements",
     links: [
       {
         label: "Nexus",
@@ -234,7 +264,7 @@ export const featured: Project[] = [
     description:
       "Gives your horse more to do: bonding, breeding, stamina and stables, plus a Mount tab on the character screen.",
     stack: ["C#", "BepInEx", "Harmony"],
-    numbers: "2.5k unique downloads · 43 endorsements",
+    numbers: "2.6k unique downloads · 44 endorsements",
     links: [
       {
         label: "Nexus",
@@ -256,7 +286,7 @@ export const featured: Project[] = [
     description:
       "Normally Icarus only lets you bring workshop items back to the space station and deletes everything else. With this you can take tools, resources, food or gear home too, either when you leave a mission or through the exotic delivery pod. You pick which kinds of items come along.",
     stack: ["Game data modding"],
-    numbers: "320 unique downloads · 5 endorsements",
+    numbers: "352 unique downloads · 7 endorsements",
     links: [{ label: "Nexus", href: "https://www.nexusmods.com/icarus/mods/306" }],
     shots: [
       {
@@ -308,6 +338,13 @@ export type SmallProject = {
 
 export const smaller: SmallProject[] = [
   {
+    title: "StationeersXR",
+    context: "Stationeers · C# · VR",
+    description:
+      "I made this so my dad could play Stationeers in VR. Your hands follow the controllers, menus work with a laser pointer, and your inventory sits on your wrist like a watch.",
+    href: "https://www.nexusmods.com/stationeers/mods/19",
+  },
+  {
     title: "Riding Club Championships server",
     context: "Python · reverse engineering",
     description:
@@ -318,7 +355,7 @@ export const smaller: SmallProject[] = [
     title: "V Rising mods",
     context: "C# · Thunderstore",
     description:
-      "BloodRefill, ResourceStashWithdrawal, PotionsHaveContainers and VComforts. I kept them working through the game's big updates. 30k+ downloads together.",
+      "BloodRefill, ResourceStashWithdrawal, PotionsHaveContainers and VComforts. I kept them working through the game's big updates. 31k downloads together.",
     href: "https://thunderstore.io/c/v-rising/p/Skies/",
   },
   {
@@ -339,6 +376,13 @@ export const smaller: SmallProject[] = [
     description:
       "Change how your character looks after you've already started, from a table in your house.",
     href: "https://www.nexusmods.com/taintedgrailthefallofavalon/mods/313",
+  },
+  {
+    title: "Seed Presets",
+    context: "Plants vs. Zombies: Replanted",
+    description:
+      "Save your plant picks in five preset slots and have them picked for you at the start of every level.",
+    href: "https://www.nexusmods.com/plantsvszombiesreplanted/mods/13",
   },
   {
     title: "LocalModBridge",

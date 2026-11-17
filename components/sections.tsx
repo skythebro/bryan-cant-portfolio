@@ -111,7 +111,7 @@ export function Smaller() {
               <span className="leading-relaxed text-muted-foreground">
                 {item.description}
               </span>
-              <ArrowUpRight className="hidden size-4 text-muted-foreground group-hover:text-primary sm:block" />
+              <ArrowUpRight className="hidden size-4 text-muted-foreground group-hover:text-primary sm:block" aria-hidden />
             </a>
           </li>
         ))}
@@ -202,7 +202,7 @@ export function Contact() {
               className="inline-flex items-center gap-1 hover:text-foreground"
             >
               {link.label}
-              <ArrowUpRight className="size-3.5" />
+              <ArrowUpRight className="size-3.5" aria-hidden />
             </a>
           </li>
         ))}

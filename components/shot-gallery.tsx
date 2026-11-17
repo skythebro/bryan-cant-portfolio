@@ -65,11 +65,11 @@ export function ShotGallery({ shots, title }: { shots: Shot[]; title: string }) 
           width={1600}
           height={1000}
           loading="lazy"
-          className="aspect-[16/10] w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+          className="aspect-[16/10] w-full object-cover transition-opacity duration-200 group-hover:opacity-90"
         />
         {count > 1 ? (
           <span className="absolute right-3 bottom-3 inline-flex items-center gap-1.5 rounded-full bg-black/65 px-2.5 py-1 text-xs text-white backdrop-blur-sm">
-            <Images className="size-3.5" />
+            <Images className="size-3.5" aria-hidden />
             {count}
           </span>
         ) : null}
@@ -131,7 +131,7 @@ export function ShotGallery({ shots, title }: { shots: Shot[]; title: string }) 
                       step(-1);
                     }}
                   >
-                    <ChevronLeft className="size-5" />
+                    <ChevronLeft className="size-5" aria-hidden />
                   </button>
                   <button
                     type="button"
@@ -142,7 +142,7 @@ export function ShotGallery({ shots, title }: { shots: Shot[]; title: string }) 
                       step(1);
                     }}
                   >
-                    <ChevronRight className="size-5" />
+                    <ChevronRight className="size-5" aria-hidden />
                   </button>
                 </>
               ) : null}
@@ -156,7 +156,7 @@ export function ShotGallery({ shots, title }: { shots: Shot[]; title: string }) 
                   close();
                 }}
               >
-                <X className="size-5" />
+                <X className="size-5" aria-hidden />
               </button>
             </div>,
             document.body,

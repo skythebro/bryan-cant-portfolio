@@ -30,6 +30,16 @@ All copy lives in `lib/content.ts`. Write it the way you'd say it to someone: fi
 
 Geist for everything. Body text is 16px with relaxed line height; text blocks stay under ~70 characters wide (`max-w-2xl`).
 
+## Polish rules
+
+Checked against [unslop](https://github.com/heydamir/unslop) by Damir Sokolovsky (CC BY 4.0) and the ui-ux-pro-max accessibility checklist:
+
+- The hero names me; no greeting headline, no badge above it, one primary and one secondary button.
+- Download figures and stats use Geist Mono with tabular numbers. That's the one signature detail.
+- No hover zoom, glows or looping animation. Hovers change colour or opacity only.
+- Every link and button shows a focus outline, and `scroll-padding-top` keeps focused items out from under the sticky header.
+- Tap targets are at least 44px tall.
+
 ## Screenshots
 
 Card covers come from `public/foa/` (16:10, cropped). Clicking a cover opens all of that project's shots in a lightbox (Esc, arrow keys, swipe). Projects without screenshots show their logo or name on a plain panel.

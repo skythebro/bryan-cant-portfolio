@@ -97,6 +97,11 @@
   html {
     @apply font-sans scroll-smooth;
     color-scheme: dark;
+    scroll-padding-top: 5rem;
+  }
+
+  :where(a, button):focus-visible {
+    @apply rounded-sm outline-2 outline-offset-2 outline-ring;
   }
 
   body {

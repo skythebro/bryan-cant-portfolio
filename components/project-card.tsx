@@ -9,7 +9,7 @@ function Cover({ project }: { project: Project }) {
 
   // Projects without screenshots get a plain panel with their name.
   return (
-    <div className="flex aspect-[16/10] items-center justify-center bg-[radial-gradient(ellipse_at_top,oklch(0.32_0.05_70),oklch(0.2_0.01_60))]">
+    <div className="flex aspect-[16/10] items-center justify-center bg-muted">
       <span className="px-6 text-center text-3xl font-semibold tracking-tight text-foreground/90">
         {project.title}
       </span>
@@ -44,7 +44,7 @@ export function ProjectCard({
           {project.description}
         </p>
         {project.numbers ? (
-          <p className="mt-4 text-sm font-medium text-foreground/90">
+          <p className="mt-4 font-mono text-sm text-foreground/90 tabular-nums">
             {project.numbers}
           </p>
         ) : null}
@@ -65,10 +65,10 @@ export function ProjectCard({
                 <a
                   key={link.href}
                   href={link.href}
-                  className="inline-flex items-center gap-0.5 font-medium text-primary hover:underline"
+                  className="inline-flex min-h-11 items-center gap-0.5 font-medium text-primary underline-offset-4 hover:underline"
                 >
                   {link.label}
-                  <ArrowUpRight className="size-3.5" />
+                  <ArrowUpRight className="size-3.5" aria-hidden />
                 </a>
               ))}
             </div>
