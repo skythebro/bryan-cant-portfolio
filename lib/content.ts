@@ -117,12 +117,29 @@ export const featured: Project[] = [
     context: "Dying Light: The Beast",
     description:
       "Co-op for the game's Restored Land mode, for up to four players. You join a friend the same ways the base game allows: the pause menu, a Steam invite or the public games list. Zombies you kill stay dead for everyone, late joiners included, and cleared areas and the map are shared while loot stays per player. I lost the original code, so version 2 is a full rebuild.",
-    stack: ["Reverse engineering", "Game networking"],
+    stack: ["ASI mod", "Reverse engineering", "Game networking"],
     numbers: "1.8k unique downloads · 21 endorsements · v2.0.1",
     links: [
       {
         label: "Nexus",
         href: "https://www.nexusmods.com/dyinglightthebeast/mods/821",
+      },
+    ],
+    shots: [
+      {
+        src: "/shots/restoredland-coop.jpg",
+        alt: "A player standing on a hill in the Restored Land overlooking a village and mountains",
+        caption: "Playing the Restored Land in co-op",
+      },
+      {
+        src: "/shots/restoredland-public-games.jpg",
+        alt: "The game's public games list with a Restored Land co-op game at the top",
+        caption: "Restored Land games in the public games list",
+      },
+      {
+        src: "/shots/restoredland-shared-map.jpg",
+        alt: "The in-game map of Old Town with the explored area revealed",
+        caption: "The guest sees the host's explored map",
       },
     ],
   },
